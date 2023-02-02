@@ -1,0 +1,45 @@
+{
+  "id": "58b7a12d-f433-4fb1-b33c-f816f041f53f",
+  "name": "FBM_PBI_JYM",
+  "publisher": "FBM Group",
+  "version": "1.0.0.2",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+    "id": "956edc1f-0699-465b-872a-3cf5a2304124",
+    "name": "Onetech",
+    "publisher": "Grupo STAFF",
+    "version": "1.0.0.2"
+  },
+  {
+    "id": "851c279d-958a-4479-a6e6-b2eb62fe20ca",
+    "name": "DrakoLtdBC",
+    "publisher": "Grupo STAFF",
+    "version": "1.0.0.3"
+  }
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "21.0.0.0",
+  "idRanges": [
+    {
+      "from": 61100,
+      "to": 61199
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "10.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}

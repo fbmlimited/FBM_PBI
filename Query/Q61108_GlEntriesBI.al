@@ -1,6 +1,6 @@
 query 61108 FBM_GlEntriesBI_PBI
 {
-    Caption = 'GlEntriesBI';
+
 
 
     elements
