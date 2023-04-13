@@ -1,1 +1,1 @@
-﻿{"Added":[],"Modified":[],"Removed":[]}
+﻿{"Added":[{"Id":61101,"Kind":17,"Name":"CompInfoExtPBI","PackagePath":"/src/TableExt/TE61101_T79_CompInfo.al"},{"Id":61100,"Kind":17,"Name":"SalesJeaderExtPBI","PackagePath":"/src/TableExt/TE61100_T36_SalesHeader.al"}],"Modified":[],"Removed":[{"Id":61111,"Kind":14,"Name":"Site","PackagePath":"/src/Query/Q61111_Site.al"},{"Id":61103,"Kind":12,"Name":"FBM_CustomerOp_PBI","PackagePath":"/src/Page/P61103_Customer.al"}]}

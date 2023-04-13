@@ -1,0 +1,128 @@
+<EntityType Name="SiteWS">
+<Property Name="Subsidiary" Type="Edm.String" MaxLength="250">
+<Annotation Term="NAV.LabelId" String="Custom System Indicator Text"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="No_" Type="Edm.String" Nullable="false" MaxLength="20">
+<Annotation Term="NAV.LabelId" String="Company Code"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+<Annotation Term="NAV.AllowEditOnCreate" Bool="true"/>
+</Property>
+<Property Name="FBM_GrCode" Type="Edm.String" MaxLength="20">
+<Annotation Term="NAV.LabelId" String="Group Code"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="Site_Name" Type="Edm.String" MaxLength="250">
+<Annotation Term="NAV.LabelId" String="Site Name"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="Address" Type="Edm.String" MaxLength="250">
+<Annotation Term="NAV.LabelId" String="Address"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="Address_2" Type="Edm.String" MaxLength="250">
+<Annotation Term="NAV.LabelId" String="Address 2"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="City" Type="Edm.String" MaxLength="30">
+<Annotation Term="NAV.LabelId" String="City"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="Post_Code" Type="Edm.String" MaxLength="20">
+<Annotation Term="NAV.LabelId" String="Post Code"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="County" Type="Edm.String" MaxLength="50">
+<Annotation Term="NAV.LabelId" String="County"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="Country_Region_Code" Type="Edm.String" MaxLength="20">
+<Annotation Term="NAV.LabelId" String="Country/Region Code"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="Business_Name" Type="Edm.String" MaxLength="100">
+<Annotation Term="NAV.LabelId" String="Business Name"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="Vat_Number" Type="Edm.String" MaxLength="20">
+<Annotation Term="NAV.LabelId" String="Vat Number"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="Contract_Code" Type="Edm.String" MaxLength="4">
+<Annotation Term="NAV.LabelId" String="Contract Code"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="Status" Type="Edm.String" MaxLength="50">
+<Annotation Term="NAV.LabelId" String="Status"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="Valid_From" Type="Edm.Date">
+<Annotation Term="NAV.LabelId" String="Valid from"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/Date</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="Valid_To" Type="Edm.Date">
+<Annotation Term="NAV.LabelId" String="Valid to"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/Date</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="Record_Owner" Type="Edm.String" MaxLength="30">
+<Annotation Term="NAV.LabelId" String="Record Owner"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
+<Property Name="Change_Note" Type="Edm.String" MaxLength="1024">
+<Annotation Term="NAV.LabelId" String="Change Note"/>
+<Annotation Term="NAV.NavType">
+<EnumMember>NAV.NavType/String</EnumMember>
+</Annotation>
+<Annotation Term="NAV.AllowEdit" Bool="false"/>
+</Property>
