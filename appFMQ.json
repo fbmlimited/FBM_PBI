@@ -1,0 +1,39 @@
+{
+  "id": "58b7a12d-f433-4fb1-b33c-f816f041f53f",
+  "name": "FBM_PBI_FMQ",
+  "publisher": "FBM Group",
+  "version": "1.0.0.3",
+  "brief": "",
+  "description": "",
+  "privacyStatement": "",
+  "EULA": "",
+  "help": "",
+  "url": "",
+  "logo": "",
+  "dependencies": [
+    {
+    "id": "48a70cf5-bbd4-40e5-aefb-57ee01d71aa5",
+    "name": "FABAMAQ-ONETECH",
+    "publisher": "ONETECH",
+    "version": "1.0.0.0"
+  }
+  ],
+  "screenshots": [],
+  "platform": "1.0.0.0",
+  "application": "20.0.0.0",
+  "idRanges": [
+    {
+      "from": 61100,
+      "to": 61199
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": false,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "9.0",
+  "features": [
+    "NoImplicitWith"
+  ]
+}

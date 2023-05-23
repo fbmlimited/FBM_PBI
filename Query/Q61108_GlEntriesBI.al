@@ -99,6 +99,9 @@ query 61108 FBM_GlEntriesBI_PBI
             column(G_L_Account_Name; "G/L Account Name")
             {
             }
+            column(Reversed; Reversed)
+            {
+            }
             dataitem(Sales_Invoice_Header; "Sales Invoice Header")
             {
                 DataItemLink = "No." = G_L_Entry."Document No.";
@@ -108,7 +111,7 @@ query 61108 FBM_GlEntriesBI_PBI
                 column(Sell_to_Customer_Name; "Sell-to Customer Name")
                 {
                 }
-                column(Period_Start; "Period Start")
+                column(Period_Start; "FBM_Period Start")
                 {
                 }
                 dataitem(Purch__Inv__Header; "Purch. Inv. Header")

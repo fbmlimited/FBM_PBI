@@ -17,6 +17,39 @@
             "enableLongRunningSqlStatements": true,
             "enableSqlInformationDebugger": true,
             "schemaUpdateMode": "ForceSync"
-        }
+        },
+        {
+            "type": "al",
+            "request": "launch",
+            "name": "live",
+            "server": "http://10.0.0.5",
+            "serverInstance": "fabamaq",
+            "port": 2005,
+            "authentication": "UserPassword",
+            "startupObjectId": 22,
+            "startupObjectType": "Page",
+            "breakOnError": true,
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true
+        },
+        {
+            "name": "Debug",
+            "type": "al",
+            "request": "launch",
+            "server": "http://localhost",
+            "serverInstance": "bc200",
+            "port": 7049,
+            "authentication": "UserPassword",
+            "startupObjectId": 22,
+            "breakOnError": true,
+            "breakOnRecordWrite": false,
+            "launchBrowser": true,
+            "enableSqlInformationDebugger": true,
+            "enableLongRunningSqlStatements": true,
+            "longRunningSqlStatementsThreshold": 500,
+            "numberOfSqlStatements": 10,
+            "schemaUpdateMode": "ForceSync"
+          }
     ]
 }
