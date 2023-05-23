@@ -31,6 +31,7 @@ page 61101 FBM_Subsidiary_PBI
     begin
         compinfo.ChangeCompany(rec.Name);
         compinfo.get;
+
         if compinfo.FBM_EnWS then
             rname := rec.Name else
             rname := '';

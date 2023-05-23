@@ -34,6 +34,23 @@
             "enableSqlInformationDebugger": true
         },
         {
+
+            "type": "al",
+            "request": "launch",
+            "name": "test",
+            "server": "http://10.0.0.5",
+            "serverInstance": "test",
+            "port": 4005,
+            "authentication": "UserPassword",
+            "startupObjectId": 22,
+            "startupObjectType": "Page",
+            "breakOnError": true,
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true
+        },
+        {
+
             "name": "Debug",
             "type": "al",
             "request": "launch",
