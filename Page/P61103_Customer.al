@@ -1,4 +1,4 @@
-/* page 61103 FBM_CustomerOp_PBI
+page 61103 FBM_CustomerOp_PBI
 {
     PageType = API;
     Caption = 'CustomerOperator';
@@ -7,7 +7,7 @@
     APIVersion = 'v2.0', 'v1.0';
     EntityName = 'CustomerOperator';
     EntitySetName = 'CustomerOperator';
-    SourceTable = Customer;
+    SourceTable = FBM_Customer;
     DelayedInsert = true;
     InsertAllowed = false;
 
@@ -17,21 +17,13 @@
         {
             repeater(GroupName)
             {
-                field("GroupCode"; Rec.FBM_GrCode)
+                field("GroupCode"; rec."No.")
                 {
                     Caption = 'Group Code';
                     ApplicationArea = all;
                 }
-                field(Subsidiary; Subsidiary)
-                {
-                    Caption = 'Subsidiary';
-                    ApplicationArea = all;
-                }
-                field("CompanyCode"; Rec."No.")
-                {
-                    Caption = 'Company Code';
-                    ApplicationArea = all;
-                }
+
+
                 field(Name; Rec.Name)
                 {
                     Caption = 'Name';
@@ -77,6 +69,27 @@
                     Caption = 'SubGroup';
                     ApplicationArea = all;
                 }
+                field("Valid_From"; Rec."Valid From")
+                {
+                    Caption = 'Valid From';
+                    ApplicationArea = all;
+                }
+                field("Valid_To"; Rec."Valid To")
+                {
+                    Caption = 'Valid To';
+                    ApplicationArea = all;
+                }
+                field("Record_Owner"; Rec."Record Owner")
+                {
+                    Caption = 'Record Owner';
+                    ApplicationArea = all;
+                }
+                field("Change_Note"; Rec."Change Note")
+                {
+                    Caption = 'Change Note';
+                    ApplicationArea = all;
+                }
+
 
             }
         }
@@ -91,4 +104,4 @@
     var
         Subsidiary: text[250];
         compinfo: record "Company Information";
-} */
+}

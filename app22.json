@@ -27,7 +27,7 @@
   ],
   "screenshots": [],
   "platform": "1.0.0.0",
-  "application": "20.0.0.0",
+  "application": "22.0.0.0",
   "idRanges": [
     {
       "from": 61100,
@@ -39,9 +39,8 @@
     "allowDownloadingSource": false,
     "includeSourceInSymbolFile": true
   },
-  "runtime": "9.0",
+  "runtime": "11.0",
   "features": [
     "NoImplicitWith"
-  ],
-  "target": "Cloud"
+  ]
 }

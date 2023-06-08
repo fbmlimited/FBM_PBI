@@ -1,17 +1,10 @@
-page 61102 FBM_SubsidiarySite_PBI
+page 61101 FBM_SubsidiaryOLD_PBI
 {
-    Caption = 'Subsidiary Site';
-    PageType = API;
-    APIPublisher = 'FBMGroup';
-    EntitySetName = 'SubsSite';
-    EntityName = 'SubsSite';
-    APIVersion = 'v2.0', 'v1.0';
-
-    APIGroup = 'app1';
+    Caption = 'Subsidiary';
+    PageType = List;
     UsageCategory = Lists;
     ApplicationArea = All;
     SourceTable = Company;
-    InsertAllowed = false;
 
     layout
     {
@@ -19,10 +12,10 @@ page 61102 FBM_SubsidiarySite_PBI
         {
             repeater(Group)
             {
-
-                field("CompanyName"; rname)
+                field(CompanyName; rname)
                 {
 
+                    ApplicationArea = All;
                 }
                 field(SubsidiaryName; rdispname)
                 {
@@ -34,7 +27,6 @@ page 61102 FBM_SubsidiarySite_PBI
                     Caption = 'Subsidiary';
                     ApplicationArea = All;
                 }
-
             }
         }
 
@@ -45,11 +37,12 @@ page 61102 FBM_SubsidiarySite_PBI
     begin
         compinfo.ChangeCompany(rec.Name);
         compinfo.get;
-        if compinfo.FBM_EnableSiteWS then begin
+        if compinfo.FBM_EnableWS then begin
             rname := rec.Name;
             rdispname := rec."Display Name";
-            acro := compinfo."Custom System Indicator Text"
-        end else begin
+            acro := compinfo."Custom System Indicator Text";
+        end
+        else begin
             rname := '';
             rdispname := '';
             acro := '';
@@ -58,10 +51,9 @@ page 61102 FBM_SubsidiarySite_PBI
     end;
 
 
-
     var
         compinfo: Record "Company Information";
         rname: Text[30];
-        acro: text[250];
         rdispname: text[250];
+        acro: text[250];
 }

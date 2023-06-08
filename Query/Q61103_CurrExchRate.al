@@ -14,6 +14,9 @@ query 61103 FBM_CurrExchRate_PBI
             column(Exchange_Rate_Amount; "Exchange Rate Amount")
             {
             }
+            column(SystemModifiedAt; SystemModifiedAt)
+            {
+            }
         }
     }
 }
