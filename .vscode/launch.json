@@ -34,6 +34,7 @@
             "enableSqlInformationDebugger": true
         },
         {
+
             "type": "al",
             "request": "launch",
             "name": "test",
@@ -49,6 +50,7 @@
             "enableSqlInformationDebugger": true
         },
         {
+
             "name": "Debug",
             "type": "al",
             "request": "launch",
