@@ -37,7 +37,7 @@ page 61191 FBM_SubsidiaryOLD_PBI
     begin
         compinfo.ChangeCompany(rec.Name);
         compinfo.get;
-        if compinfo.FBM_EnableWS then begin
+        if compinfo.FBM_EnWS then begin
             rname := rec.Name;
             rdispname := rec."Display Name";
             acro := compinfo."Custom System Indicator Text";
