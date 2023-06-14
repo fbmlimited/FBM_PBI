@@ -55,7 +55,7 @@ page 61105 FBM_FA_PBI
                                 rec."Serial No." := fa."Serial No.";
                                 rec.FBM_EGM_Property := compinfo."Custom System Indicator Text";
                                 if country.get(compinfo."Country/Region Code") then
-                                    rec.FBM_Subsidiary := format(rec.Lessee) + ' ' + country.FBM_Country3;
+                                    rec.FBM_Subsidiary := format(compinfo.FBM_FALessee) + ' ' + country.FBM_Country3;
                                 rec.Insert();
 
                             end;

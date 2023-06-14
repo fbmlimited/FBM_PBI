@@ -66,7 +66,7 @@ query 61111 FBM_CustOpSite_PBI
                     dataitem(FBM_Site; FBM_Site)
                     {
                         DataItemLink = "Site Code" = FBM_CustOpSite."Site Code";
-                        DataItemTableFilter = Active = const(true);
+                        DataItemTableFilter = ActiveRec = const(true);
                         column(Site_GR_Code; "Site Code")
                         {
 
