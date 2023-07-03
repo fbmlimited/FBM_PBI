@@ -1,6 +1,6 @@
-page 61105 FBM_FA_PBI
+page 61106 FBM_FAPost_PBI
 {
-    Caption = 'Fixed Asset WS';
+    Caption = 'Fixed Asset Back WS';
     PageType = api;
     APIGroup = 'app1';
     APIPublisher = 'FBMGroup';
