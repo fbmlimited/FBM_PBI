@@ -1,6 +1,6 @@
 page 61104 FBM_Subsidiary_PBI
 {
-    Caption = 'Subsidiary ';
+    Caption = 'Subsidiary';
     PageType = API;
     APIGroup = 'app1';
     APIPublisher = 'FBMGroup';

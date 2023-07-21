@@ -1,14 +1,14 @@
 page 61106 FBM_FAPost_PBI
 {
-    Caption = 'Fixed Asset Back WS';
-    PageType = api;
+    Caption = 'Fixed Asset Post WS';
+    PageType = API;
     APIGroup = 'app1';
     APIPublisher = 'FBMGroup';
-    EntitySetName = 'SubsSite';
-    EntityName = 'SubsSite';
+    EntitySetName = 'FAPost';
+    EntityName = 'FAPost';
     APIVersion = 'v2.0', 'v1.0';
     UsageCategory = Lists;
-    SourceTable = "Fixed Asset";
+    SourceTable = FBM_WSBuffer;
     SourceTableTemporary = true;
     DelayedInsert = true;
 
@@ -18,99 +18,97 @@ page 61106 FBM_FAPost_PBI
         {
             repeater(FA)
             {
-                field("Serial_No"; Rec."Serial No.")
+                field("Serial_No"; Rec.F04)
                 {
                     Caption = 'Serial No.';
 
                 }
-                field(Status; Rec.FBM_Status)
+                field(Status; rec.F05)
                 {
                     Caption = 'Status';
 
                 }
-                field(Site_GR_Code; Rec.FBM_Site)
+                field(Site_GR_Code; rec.F06)
                 {
                     Caption = 'Site_GR_Code';
 
                 }
-                field(site_loc_code; siteloc)
+                field(Site_LOC_code; rec.F07)
                 {
-                    Caption = 'Site_loc_code';
+                    Caption = 'Site_LOC_code';
 
                 }
-                field(Property; Rec.FBM_EGM_Property)
+                field(Cust_GR_Code; rec.F08)
                 {
-                    Caption = 'Property';
+                    Caption = 'Cust_GR_Code';
 
                 }
-                field(Subsidiary; Rec.FBM_Subsidiary)
+                field(Cust_LOC_code; rec.F09)
                 {
-                    Caption = 'Subsidiary';
+                    Caption = 'Cust_LOC_code';
 
                 }
-                field(IsActive; Rec.IsActive)
+                field(Op_GR_Code; rec.F10)
                 {
-                    Caption = 'Is Active';
+                    Caption = 'Op_GR_Code';
 
                 }
+                field(Op_LOC_code; rec.F11)
+                {
+                    Caption = 'Op_LOC_code';
+
+                }
+                field(Lessee; rec.F12)
+                {
+                    Caption = 'Lessee';
+
+                }
+                field(Adquired_Date; Rec.F13)
+                {
+                    Caption = 'Adquired Date';
+
+                }
+                field(Update_Date; Rec.F14)
+                {
+                    Caption = 'Update Date';
+
+                }
+                field(Update_Time; Rec.F15)
+                {
+                    Caption = 'Update Time';
+
+                }
+
 
             }
         }
     }
     trigger
-    OnOpenPage()
+   OnInsertRecord(BelowxRec: Boolean): Boolean
+    var
+        buffer: record FBM_WSBuffer;
+        numbatch: integer;
+        maxbatch: Integer;
     begin
-        if company.FindFirst() then
-            repeat
-                compinfo.ChangeCompany(company.Name);
-                compinfo.get;
-                fa.ChangeCompany(company.Name);
-                fasc.ChangeCompany(company.Name);
+        buffer.SetRange(Imported, true);
+        if buffer.FindLast() then
+            maxbatch := buffer.BatchNo;
+        buffer.Reset();
+        buffer.SetRange(Imported, false);
+        if buffer.FindFirst() then
+            numbatch := buffer.BatchNo
+        else
+            numbatch := maxbatch + 1;
+        rec.F01 := 'FA';
+        rec.F02 := format(Today);
+        rec.F03 := format(Time);
+        rec.BatchNo := numbatch;
 
-                if fa.FindFirst() then
-                    repeat
-                        if fasc.get(fa."FA Subclass Code") then
-                            if fasc.FBM_EGM then begin
-                                rec.Init();
-                                rec."No." := compinfo."Custom System Indicator Text" + fa."No.";
-                                rec."Serial No." := fa."Serial No.";
-                                rec.FBM_EGM_Property := compinfo."Custom System Indicator Text";
-                                rec.FBM_Subsidiary := fa.FBM_Subsidiary;
-                                rec.IsActive := fa.IsActive;
-                                rec.Insert();
-
-                            end;
-                    until fa.Next() = 0;
-            until company.Next() = 0;
 
     end;
 
-    trigger
-    OnAfterGetRecord()
-    var
-        csite: record FBM_CustomerSite_C;
 
-    begin
-        company.FindFirst();
-        repeat
-            csite.ChangeCompany(company.Name);
-            if csite.FindFirst() then begin
-                siteloc := '';
-
-                csite.SetRange(SiteGrCode, rec.FBM_Site);
-                if csite.FindFirst() then
-                    siteloc := csite."Site Code";
-            end;
-        until company.Next() = 0;
-    end;
-
-
-    var
-        company: record Company;
-        compinfo: Record "Company Information";
-        fa: record "Fixed Asset";
-        fasc: record "FA Subclass";
-        country: record "Country/Region";
-        subsidiary: text;
-        siteloc: code[20];
 }
+
+
+
