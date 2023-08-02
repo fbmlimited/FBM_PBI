@@ -52,10 +52,10 @@ page 61108 FBM_FinAttributes_PBI
                 {
                     ApplicationArea = All;
                 }
-                field(Royalty; Rec.Royalty)
-                {
-                    ApplicationArea = All;
-                }
+                // field(Royalty; Rec.Royalty)
+                // {
+                //     ApplicationArea = All;
+                // }
                 field(InvInt; Rec.InvInt)
                 {
                     ApplicationArea = All;

@@ -79,6 +79,10 @@ query 61112 FBM_Site_PBI
             {
 
             }
+            column(SystemModifiedAt; SystemModifiedAt)
+            {
+
+            }
         }
     }
 }

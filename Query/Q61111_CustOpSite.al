@@ -36,7 +36,10 @@ query 61111 FBM_CustOpSite_PBI
             {
 
             }
+            column(SystemModifiedAt; SystemModifiedAt)
+            {
 
+            }
 
             dataitem(Customer; FBM_Customer)
             {

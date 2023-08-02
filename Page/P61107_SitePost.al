@@ -9,21 +9,21 @@ page 61107 FBM_SitePost_PBI
     APIVersion = 'v2.0', 'v1.0';
     UsageCategory = Lists;
     SourceTable = FBM_WSBuffer;
-    SourceTableTemporary = true;
+    SourceTableTemporary = false;
     DelayedInsert = true;
 
     layout
     {
         area(Content)
         {
-            repeater(FA)
+            repeater(SITE)
             {
-                field(Site_GR_Code; Rec.F04)
-                {
-                    Caption = 'Site_GR_Code';
+                // field(Site_GR_Code; Rec.F04)
+                // {
+                //     Caption = 'Site_GR_Code';
 
-                }
-                field(Site_LOC_code; rec.F05)
+                // }
+                field(Site_LOC_code; rec.F04)
                 {
                     Caption = 'Site_LOC_code';
 
@@ -33,28 +33,15 @@ page 61107 FBM_SitePost_PBI
                     Caption = 'Status';
 
                 }
-                field(CStatus; rec.F06)
-                {
-                    Caption = 'CStatus';
 
-                }
 
-                field(Lessee; rec.F07)
-                {
-                    Caption = 'Lessee';
 
-                }
-                field(Adquired_Date; Rec.F08)
-                {
-                    Caption = 'Adquired Date';
-
-                }
-                field(Update_Date; Rec.F09)
+                field(Update_Date; Rec.F06)
                 {
                     Caption = 'Update Date';
 
                 }
-                field(Update_Time; Rec.F10)
+                field(Update_Time; Rec.F07)
                 {
                     Caption = 'Update Time';
 

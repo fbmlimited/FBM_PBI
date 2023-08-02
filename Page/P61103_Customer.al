@@ -89,6 +89,11 @@ page 61103 FBM_CustomerOp_PBI
                     Caption = 'Change Note';
                     ApplicationArea = all;
                 }
+                field(SystemModifiedAt; rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified At';
+                    ApplicationArea = all;
+                }
 
 
             }

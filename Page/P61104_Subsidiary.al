@@ -41,6 +41,12 @@ page 61104 FBM_Subsidiary_PBI
                     Caption = 'Subsidiary';
 
                 }
+
+                field(SystemModifiedAt; rec.SystemModifiedAt)
+                {
+                    Caption = 'Last Modified At';
+                    ApplicationArea = all;
+                }
             }
         }
     }
