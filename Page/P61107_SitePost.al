@@ -53,10 +53,65 @@ page 61107 FBM_SitePost_PBI
     }
     trigger
    OnInsertRecord(BelowxRec: Boolean): Boolean
+    var
+        buffer: record FBM_WSBuffer;
+        numbatch: integer;
+        maxbatch: Integer;
+        comp: record Company;
+        site: record FBM_Site;
+        csite: record FBM_CustomerSite_C;
     begin
+        buffer.SetRange(Imported, true);
+        if buffer.FindLast() then
+            maxbatch := buffer.BatchNo;
+        buffer.Reset();
+        buffer.SetRange(Imported, false);
+        if buffer.FindFirst() then
+            numbatch := buffer.BatchNo
+        else
+            numbatch := maxbatch + 1;
+
+        rec.WS := 'SITE';
+        rec.DateTrans := Today;
+        rec.TimeTrans := Time;
         rec.F01 := 'SITE';
         rec.F02 := format(Today);
         rec.F03 := format(Time);
+        rec.BatchNo := numbatch;
+        buffer.Reset();
+        if buffer.FindLast() then
+            rec.EntryNo := buffer.EntryNo + 1 else
+            rec.entryNo := 1;
+        if comp.FindFirst() then
+            repeat
+                csite.ChangeCompany(comp.Name);
+                csite.SetRange("Site Code", rec.F04);
+                if csite.FindFirst() then
+                    site.SetRange("Site Code", csite.SiteGrCode);
+                if site.FindFirst() then
+                    case rec.F05 of
+                        '1':
+                            site.Status := site.Status::OPERATIONAL;
+                        '2':
+                            site.Status := site.Status::"HOLD OPERATION";
+                        '3':
+                            site.Status := site.Status::"STOP OPERATION";
+                        '4':
+                            site.Status := site.Status::"NOT YET";
+
+                        else
+                            site.Status := site.Status::" ";
+
+
+
+                    end;
+
+
+                site.Modify();
+
+            until comp.Next() = 0;
+        rec.Imported := true;
+        rec.Modify();
 
     end;
 

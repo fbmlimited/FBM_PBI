@@ -64,6 +64,15 @@ page 61108 FBM_FinAttributes_PBI
                 {
                     ApplicationArea = All;
                 }
+                field(Valid_From; Rec."Valid From")
+                {
+                    ApplicationArea = All;
+                }
+                field(Valid_To; Rec."Valid To")
+                {
+                    ApplicationArea = All;
+                }
+
             }
         }
     }

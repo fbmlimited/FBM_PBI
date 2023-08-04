@@ -58,7 +58,7 @@ page 61105 FBM_FA_PBI
                     Caption = 'Is Active';
 
                 }
-                field(SystemModifiedAt; rec.SystemModifiedAt)
+                field(SystemModifiedAt; rec.FBM_Sma)
                 {
                     Caption = 'Last Modified At';
                     ApplicationArea = all;

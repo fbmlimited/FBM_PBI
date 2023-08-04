@@ -67,6 +67,8 @@ page 61106 FBM_FAPost_PBI
         numbatch: integer;
         maxbatch: Integer;
         fa: record "Fixed Asset";
+        comp: record Company;
+        csite: record FBM_CustomerSite_C;
     begin
         buffer.SetRange(Imported, true);
         if buffer.FindLast() then
@@ -88,23 +90,38 @@ page 61106 FBM_FAPost_PBI
         if buffer.FindLast() then
             rec.EntryNo := buffer.EntryNo + 1 else
             rec.entryNo := 1;
-        fa.SetRange("Serial No.", rec.F04);
-        if fa.FindFirst() then
-            case rec.F05 of
-                'OPERATIVE':
-                    fa.FBM_Status := FA.FBM_Status::"D. Installed Op.";
-                'NON-OPERATIVE':
-                    FA.FBM_Status := FA.FBM_Status::"E. Installed Non-Op.";
+        if comp.FindFirst() then
+            repeat
+                fa.ChangeCompany(comp.Name);
+                fa.SetRange("Serial No.", rec.F04);
+                if fa.FindFirst() and fa.IsActive then
+                    case rec.F05 of
+                        '4':
+                            fa.FBM_Status := FA.FBM_Status::"D. Installed Op.";
+                        '5':
+                            FA.FBM_Status := FA.FBM_Status::"E. Installed Non-Op.";
+                        '6':
+                            fa.FBM_Status := fa.FBM_Status::"F. Non Installed";
+                        '7':
+                            fa.FBM_Status := fa.FBM_Status::"G. Kill";
+                        '8':
+                            fa.FBM_Status := fa.FBM_Status::"H. Killed";
+                        else
+                            fa.FBM_Status := fa.FBM_Status;
 
 
-            end;
-        fa.FBM_Lessee := rec.F12;
-        fa.FBM_Site := rec.F06;
 
-        fa.Modify();
+                    end;
+                fa.FBM_Lessee := rec.F07;
+                csite.setrange("Site Code", rec.F06);
+                if csite.FindFirst() then
+                    fa.FBM_Site := csite.SiteGrCode;
 
+                fa.Modify();
 
-
+            until comp.Next() = 0;
+        rec.Imported := true;
+        rec.Modify();
     end;
 
 
