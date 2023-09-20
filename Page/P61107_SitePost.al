@@ -64,9 +64,10 @@ page 61107 FBM_SitePost_PBI
         buffer.SetRange(Imported, true);
         if buffer.FindLast() then
             maxbatch := buffer.BatchNo;
+
         buffer.Reset();
         buffer.SetRange(Imported, false);
-        if buffer.FindFirst() then
+        if buffer.FindLast() then
             numbatch := buffer.BatchNo
         else
             numbatch := maxbatch + 1;
@@ -86,32 +87,46 @@ page 61107 FBM_SitePost_PBI
             repeat
                 csite.ChangeCompany(comp.Name);
                 csite.SetRange("Site Code", rec.F04);
-                if csite.FindFirst() then
-                    site.SetRange("Site Code", csite.SiteGrCode);
-                if site.FindFirst() then
+                if csite.FindFirst() then begin
+
                     case rec.F05 of
                         '1':
-                            site.Status := site.Status::OPERATIONAL;
+                            begin
+
+                                csite.Status := csite.Status::OPERATIONAL;
+                            end;
                         '2':
-                            site.Status := site.Status::"HOLD OPERATION";
+                            begin
+
+                                csite.Status := csite.Status::"HOLD OPERATION";
+                            end;
                         '3':
-                            site.Status := site.Status::"STOP OPERATION";
+                            begin
+
+                                csite.Status := csite.Status::"STOP OPERATION";
+                            end;
                         '4':
-                            site.Status := site.Status::"NOT YET";
+                            begin
 
-                        else
-                            site.Status := site.Status::" ";
+                                csite.Status := csite.Status::"NOT YET";
+                            end;
 
+                        else begin
+
+                            csite.Status := csite.Status::" ";
+                        end;
 
 
                     end;
 
 
-                site.Modify();
+                    site.Modify();
+                end;
 
             until comp.Next() = 0;
         rec.Imported := true;
-        rec.Modify();
+
+
 
     end;
 

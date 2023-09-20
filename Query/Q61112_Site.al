@@ -38,10 +38,7 @@ query 61112 FBM_Site_PBI
             {
 
             }
-            column(Business_Name; "Business Name")
-            {
 
-            }
             column(Vat_Number; "Vat Number")
             {
 
@@ -50,19 +47,13 @@ query 61112 FBM_Site_PBI
             // {
 
             // }
-            column(Status; Status)
-            {
+            // column(Status; Status)
+            // {
 
-            }
 
-            column(Group; Group)
-            {
+            // }
 
-            }
-            column(SubGroup; SubGroup)
-            {
 
-            }
             column(Valid_From; "Valid From")
             {
 
@@ -83,6 +74,8 @@ query 61112 FBM_Site_PBI
             {
 
             }
+
+
         }
     }
 }

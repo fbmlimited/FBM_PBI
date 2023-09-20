@@ -23,7 +23,7 @@ page 61105 FBM_FA_PBI
                     Caption = 'Serial No.';
 
                 }
-                field(Status; format(Rec.FBM_Status))
+                field(Status; Rec.FBM_Status.AsInteger)
                 {
                     Caption = 'Status';
 
@@ -32,7 +32,11 @@ page 61105 FBM_FA_PBI
                 // {
                 //     Caption = 'Site_GR_Code';
 
-                // }
+                field(Description; Rec.Description)
+                {
+                    Caption = 'Description';
+
+                }                // }
                 field(site_loc_code; siteloc)
                 {
                     Caption = 'Site_loc_code';
@@ -53,16 +57,22 @@ page 61105 FBM_FA_PBI
                     Caption = 'Subsidiary';
 
                 }
-                field(IsActive; Rec.IsActive)
-                {
-                    Caption = 'Is Active';
+                // field(IsActive; Rec.IsActive)
+                // {
+                //     Caption = 'Is Active';
 
-                }
+                // }
                 field(SystemModifiedAt; rec.FBM_Sma)
                 {
                     Caption = 'Last Modified At';
                     ApplicationArea = all;
                 }
+                field(SystemCreatedAt; rec.FBM_Sca)
+                {
+                    Caption = 'Created At';
+                    ApplicationArea = all;
+                }
+
 
             }
         }
@@ -72,6 +82,7 @@ page 61105 FBM_FA_PBI
     var
         site: record FBM_Site;
         country: record "Country/Region";
+
     begin
         if company.FindFirst() then
             repeat
@@ -88,11 +99,23 @@ page 61105 FBM_FA_PBI
                                 rec."No." := compinfo."Custom System Indicator Text" + fa."No.";
                                 rec."Serial No." := fa."Serial No.";
                                 rec.FBM_EGM_Property := compinfo."Custom System Indicator Text";
-                                if site.get(fa.FBM_Site) then
-                                    if country.get(site."Country/Region Code") then
-                                        rec.FBM_Subsidiary := fa.FBM_Lessee + ' ' + country.FBM_Country3;
+                                rec.Description := fa.Description;
+                                rec.FBM_Site := fa.FBM_Site;
+
+                                rec.FBM_Lessee := fa.FBM_Lessee;
+                                rec.FBM_Status := fa.FBM_Status;
+
+
+
+
+
+                                rec.FBM_Subsidiary := fa.FBM_Subsidiary;
+
+
                                 rec.IsActive := fa.IsActive;
                                 rec.FBM_Sma := fa.SystemModifiedAt;
+                                rec.FBM_Sca := fa.SystemCreatedAt;
+                                //if fa.IsActive then
                                 rec.Insert();
 
                             end;
@@ -105,17 +128,22 @@ page 61105 FBM_FA_PBI
     OnAfterGetRecord()
     var
         csite: record FBM_CustomerSite_C;
+        compinfo: record "Company Information";
 
     begin
         company.FindFirst();
         repeat
+            csite.Reset();
             csite.ChangeCompany(company.Name);
+            compinfo.ChangeCompany(company.Name);
+            compinfo.get();
             if csite.FindFirst() then begin
                 siteloc := '';
-
-                csite.SetRange(SiteGrCode, rec.FBM_Site);
-                if csite.FindFirst() then
-                    siteloc := csite."Site Code";
+                if (rec.FBM_Site <> '') and (compinfo."Custom System Indicator Text" = rec.FBM_Lessee) then begin
+                    csite.SetRange(SiteGrCode, rec.FBM_Site);
+                    if csite.FindFirst() then
+                        siteloc := csite."Site Code";
+                end;
             end;
         until company.Next() = 0;
     end;

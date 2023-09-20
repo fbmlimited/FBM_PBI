@@ -24,6 +24,10 @@ query 61111 FBM_CustOpSite_PBI
             {
 
             }
+            column(Status; Status)
+            {
+
+            }
             column(Valid_From; "Valid From")
             {
 
@@ -35,8 +39,13 @@ query 61111 FBM_CustOpSite_PBI
             column(IsActive; IsActive)
             {
 
+
             }
-            column(SystemModifiedAt; SystemModifiedAt)
+            column(SystemModifiedAt; FBM_Sma)
+            {
+
+            }
+            column(SystemCreatedAt; FBM_Sca)
             {
 
             }

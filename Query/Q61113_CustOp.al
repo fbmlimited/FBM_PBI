@@ -22,6 +22,7 @@ query 61113 FBM_CustOp_PBI
             column(Valid_To; "Valid To") { }
             column(Record_Owner; "Record Owner") { }
             column(Change_Note; "Change Note") { }
+            column(SystemModifiedAt; SystemModifiedAt) { }
 
         }
     }
