@@ -108,12 +108,12 @@ page 61107 FBM_SitePost_PBI
                         '4':
                             begin
 
-                                csite.Status := csite.Status::"NOT YET";
+                                csite.Status := csite.Status::"PRE-OPENING ";
                             end;
 
                         else begin
 
-                            csite.Status := csite.Status::" ";
+                            csite.Status := csite.Status::"DBC ADMIN";
                         end;
 
 

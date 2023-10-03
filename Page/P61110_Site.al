@@ -57,16 +57,6 @@ page 61110 FBM_Site_PBI
                 {
                     ApplicationArea = all;
                 }
-                // field(Contract_Code; "Contract Code")
-                // {
-
-                // }
-                // field(Status; rec.Status.AsInteger())
-                // {
-                //     ApplicationArea = all;
-
-                // }
-
 
                 field(Valid_From; rec."Valid From")
                 {
@@ -85,6 +75,10 @@ page 61110 FBM_Site_PBI
                     ApplicationArea = all;
                 }
                 field(SystemModifiedAt; rec.SystemModifiedAt)
+                {
+                    ApplicationArea = all;
+                }
+                field(SystemCreatedAt; Rec.SystemCreatedAt)
                 {
                     ApplicationArea = all;
                 }

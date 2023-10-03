@@ -105,11 +105,11 @@ page 61106 FBM_FAPost_PBI
                             '5':
                                 FA.FBM_Status := FA.FBM_Status::"E. Installed Non-Op.";
                             '6':
-                                fa.FBM_Status := fa.FBM_Status::"F. Non Installed";
+                                fa.FBM_Status := fa.FBM_Status::"F. Under Maintenance";
                             '7':
-                                fa.FBM_Status := fa.FBM_Status::"G. Kill";
+                                fa.FBM_Status := fa.FBM_Status::"G. For Disposal";
                             '8':
-                                fa.FBM_Status := fa.FBM_Status::"H. Killed";
+                                fa.FBM_Status := fa.FBM_Status::"H. Scrapped";
                             else
                                 fa.FBM_Status := fa.FBM_Status;
 

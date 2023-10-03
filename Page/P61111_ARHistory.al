@@ -34,6 +34,36 @@ page 61111 FBM_ARHistory_PBI
                     ApplicationArea = all;
 
                 }
+                field("Customer No."; Rec."Customer No.")
+                {
+                    ApplicationArea = all;
+
+                }
+                field("Customer Name"; Rec."Customer Name")
+                {
+                    ApplicationArea = all;
+
+                }
+                field(Group; Rec.FBM_Group)
+                {
+                    ApplicationArea = all;
+
+                }
+                field(GroupDesc; Rec.FBM_GroupDesc)
+                {
+                    ApplicationArea = all;
+
+                }
+                field(SubGroupdesc; Rec.FBM_SubGroupdesc)
+                {
+                    ApplicationArea = all;
+
+                }
+                field(SubGroup; Rec.FBM_SubGroup)
+                {
+                    ApplicationArea = all;
+
+                }
                 field(Document_Type; Rec."Document Type")
                 {
                     ApplicationArea = all;
@@ -82,6 +112,17 @@ page 61111 FBM_ARHistory_PBI
                 rec.FBM_DocDate := docdate;
                 rec.FBM_DocNo := docno;
                 rec.FBM_DocType := doctype;
+                rec."Customer No." := cle."Customer No.";
+
+                if customer.get(cle."Customer No.") then begin
+                    rec.FBM_Group := customer.FBM_Group;
+                    rec.FBM_SubGroup := customer.FBM_SubGroup;
+                    rec."Customer Name" := customer.Name;
+                    if cgr.get(customer.FBM_Group, customer.FBM_SubGroup) then begin
+                        rec.FBM_GroupDesc := cgr."Group Name";
+                        rec.FBM_SubGroupdesc := cgr."SubGroup Name";
+                    end;
+                end;
                 rec."Document Date" := custle."Document Date";
                 rec."Posting Date" := custle."Posting Date";
                 rec."Document No." := custle."Document No.";
@@ -119,26 +160,38 @@ page 61111 FBM_ARHistory_PBI
 
                 cle.MarkedOnly(true);
 
-                if cle.FindFirst() then
+                if cle.FindFirst() then begin
                     i := 0;
-                repeat
-                    cle.CalcFields(Amount, "Amount (LCY)");
-                    i += 1;
-                    rec.Init();
-                    rec.FBM_DocDate := docdate;
-                    rec.FBM_DocNo := docno;
-                    rec.FBM_DocType := doctype;
-                    rec."Entry No." := cle."Entry No." + (i * 10000000);
-                    rec."Document Date" := cle."Document Date";
-                    rec."Posting Date" := cle."Posting Date";
-                    rec."Document No." := cle."Document No." + '/' + docno;
-                    rec."Document Type" := cle."Document Type";
-                    rec.FBM_DocCurr := custle."Currency Code";
-                    rec.Amount := cle.Amount;
-                    rec."Amount (LCY)" := cle."Amount (LCY)";
-                    if cle."Entry No." <> CreateCustLedgEntry."Entry No." then
-                        rec.Insert();
-                until cle.Next() = 0;
+                    repeat
+                        cle.CalcFields(Amount, "Amount (LCY)");
+                        i += 1;
+                        rec.Init();
+                        rec.FBM_DocDate := docdate;
+                        rec.FBM_DocNo := docno;
+                        rec.FBM_DocType := doctype;
+                        rec."Entry No." := cle."Entry No." + (i * 1000000);
+                        rec."Document Date" := cle."Document Date";
+                        rec."Posting Date" := cle."Posting Date";
+                        rec."Document No." := cle."Document No." + '/' + docno;
+                        rec."Customer No." := cle."Customer No.";
+
+                        if customer.get(cle."Customer No.") then begin
+                            rec.FBM_Group := customer.FBM_Group;
+                            rec.FBM_SubGroup := customer.FBM_SubGroup;
+                            rec."Customer Name" := customer.Name;
+                            if cgr.get(customer.FBM_Group, customer.FBM_SubGroup) then begin
+                                rec.FBM_GroupDesc := cgr."Group Name";
+                                rec.FBM_SubGroupdesc := cgr."SubGroup Name";
+                            end;
+                        end;
+                        rec."Document Type" := cle."Document Type";
+                        rec.FBM_DocCurr := custle."Currency Code";
+                        rec.Amount := cle.Amount;
+                        rec."Amount (LCY)" := cle."Amount (LCY)";
+                        if cle."Entry No." <> CreateCustLedgEntry."Entry No." then
+                            rec.Insert();
+                    until cle.Next() = 0;
+                end;
                 cle.ClearMarks();
                 clear(cle);
             until custle.Next() = 0;
@@ -154,6 +207,8 @@ page 61111 FBM_ARHistory_PBI
         CreateCustLedgEntry: record "Cust. Ledger Entry";
         Heading: Text[50];
         i: Integer;
+        customer: record customer;
+        cgr: record FBM_CustGroup;
 
     local procedure FindApplnEntriesDtldtLedgEntry(var cLE: record "Cust. Ledger Entry")
     var

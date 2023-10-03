@@ -23,6 +23,10 @@ page 61105 FBM_FA_PBI
                     Caption = 'Serial No.';
 
                 }
+                field(StatusF; rec.FBM_Status)
+                {
+                    ApplicationArea = all;
+                }
                 field(Status; Rec.FBM_Status.AsInteger)
                 {
                     Caption = 'Status';
