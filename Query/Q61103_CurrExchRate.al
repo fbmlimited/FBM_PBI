@@ -1,5 +1,12 @@
 query 61103 FBM_CurrExchRate_PBI
 {
+    QueryType = API;
+    Caption = 'CurrExchRate';
+    APIPublisher = 'FBMGroup';
+    APIGroup = 'app1';
+    APIVersion = 'v2.0', 'v1.0';
+    EntityName = 'CurrExchRate';
+    EntitySetName = 'CurrExchRate';
 
     elements
     {

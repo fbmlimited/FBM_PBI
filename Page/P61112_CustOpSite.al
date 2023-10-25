@@ -22,15 +22,17 @@ page 61112 FBM_CustOpSite_PBI
                 {
                     ApplicationArea = all;
                 }
+
+
+                field(Site_Loc_Code; rec."Site Loc Code")
+                {
+                    ApplicationArea = all;
+                }
                 field(Site_GR_Code; Rec."Site Code")
                 {
                     ApplicationArea = all;
                 }
                 field(Site_Name; SiteName)
-                {
-                    ApplicationArea = all;
-                }
-                field(Site_Loc_Code; rec."Site Loc Code")
                 {
                     ApplicationArea = all;
                 }

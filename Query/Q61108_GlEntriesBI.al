@@ -1,5 +1,12 @@
 query 61108 FBM_GlEntriesBI_PBI
 {
+    QueryType = API;
+    Caption = 'GLEntriesBI';
+    APIPublisher = 'FBMGroup';
+    APIGroup = 'app1';
+    APIVersion = 'v2.0', 'v1.0';
+    EntityName = 'GLEntriesBI';
+    EntitySetName = 'GLEntriesBI';
 
 
 

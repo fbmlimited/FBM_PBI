@@ -1,5 +1,12 @@
 query 61104 FBM_DetCustLE_PBI
 {
+    QueryType = API;
+    Caption = 'DetCustLE';
+    APIPublisher = 'FBMGroup';
+    APIGroup = 'app1';
+    APIVersion = 'v2.0', 'v1.0';
+    EntityName = 'DetCustLE';
+    EntitySetName = 'DetCustLE';
 
     elements
     {

@@ -1,6 +1,12 @@
 query 61113 FBM_CustOp_PBI
 {
-    QueryType = Normal;
+    QueryType = API;
+    Caption = 'CustOp';
+    APIPublisher = 'FBMGroup';
+    APIGroup = 'app1';
+    APIVersion = 'v2.0', 'v1.0';
+    EntityName = 'CustOp';
+    EntitySetName = 'CustOp';
     TopNumberOfRows = 1;
     OrderBy = ascending(GroupCode);
 

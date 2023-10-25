@@ -1,5 +1,12 @@
 query 61102 FBM_BankAccLE_PBI
 {
+    QueryType = API;
+    Caption = 'BankAccLE';
+    APIPublisher = 'FBMGroup';
+    APIGroup = 'app1';
+    APIVersion = 'v2.0', 'v1.0';
+    EntityName = 'BankAccLE';
+    EntitySetName = 'BankAccLE';
 
     elements
     {

@@ -1,6 +1,13 @@
 query 61106 FBM_GLEntryBankAcc_PBI
 {
 
+    QueryType = API;
+    Caption = 'GLEBankAcc';
+    APIPublisher = 'FBMGroup';
+    APIGroup = 'app1';
+    APIVersion = 'v2.0', 'v1.0';
+    EntityName = 'GLEBankAcc';
+    EntitySetName = 'GLEBankAcc';
     elements
     {
         dataitem(GLEntry; "G/L Entry")

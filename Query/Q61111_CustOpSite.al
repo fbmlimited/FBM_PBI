@@ -1,5 +1,12 @@
 query 61111 FBM_CustOpSite_PBI
 {
+    QueryType = API;
+    Caption = 'CustOpSite';
+    APIPublisher = 'FBMGroup';
+    APIGroup = 'app1';
+    APIVersion = 'v2.0', 'v1.0';
+    EntityName = 'CustOpSite';
+    EntitySetName = 'CustOpSite';
 
 
     elements

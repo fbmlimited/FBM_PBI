@@ -1,6 +1,13 @@
 query 61101 FBM_BankLedgerdetail_PBI
 {
-    QueryType = Normal;
+    QueryType = API;
+    Caption = 'BankLE';
+    APIPublisher = 'FBMGroup';
+    APIGroup = 'app1';
+    APIVersion = 'v2.0', 'v1.0';
+    EntityName = 'BankLE';
+    EntitySetName = 'BankLE';
+
     elements
     {
         dataitem(BankAccountLedgerEntry; "Bank Account Ledger Entry")

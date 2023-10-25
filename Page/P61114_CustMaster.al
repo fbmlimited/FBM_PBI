@@ -1,13 +1,13 @@
-page 61110 FBM_Site_PBI
+page 61114 FBM_CustMaster_PBI
 {
     PageType = API;
-    Caption = 'Site';
+    Caption = 'CustMaster';
     APIPublisher = 'FBMGroup';
     APIGroup = 'app1';
     APIVersion = 'v2.0', 'v1.0';
-    EntityName = 'Site';
-    EntitySetName = 'Site';
-    SourceTable = FBM_Site;
+    EntityName = 'CustMaster';
+    EntitySetName = 'CustMaster';
+    SourceTable = FBM_Customer;
     DelayedInsert = true;
     InsertAllowed = false;
 
@@ -18,76 +18,67 @@ page 61110 FBM_Site_PBI
         {
             repeater(GroupName)
             {
-                field(Site_Code; rec."Site Code")
+                field(No; rec."No.")
                 {
                     ApplicationArea = all;
+                }
+                field(Name; rec.Name)
+                {
+                    ApplicationArea = all;
+                }
+                field(Name2; rec."Name 2")
+                {
+                    ApplicationArea = all;
+                }
+                field(Name3; rec."FBM_Name 3")
+                {
+                    ApplicationArea = all;
+                }
+                field(SearchName; rec."Search Name")
+                {
+                    ApplicationArea = all;
+                }
+                field(address; rec.Address)
+                {
+                    ApplicationArea = all;
+                }
+                field(address2; rec."Address 2")
+                {
+                    ApplicationArea = all;
+                }
+                field(city; rec.City)
+                {
+                    ApplicationArea = all;
+                }
+                field(contact; rec.Contact)
+                {
+                    ApplicationArea = all;
+                }
+                field(phone; rec."Phone No.")
+                {
+                    ApplicationArea = all;
+                }
+                field(company1; rec.FBM_Company1)
+                {
+                    ApplicationArea = all;
+                }
+                field(company2; rec.FBM_Company2)
+                {
+                    ApplicationArea = all;
+                }
+                field(company3; rec.FBM_Company3)
+                {
+                    ApplicationArea = all;
+                }
+                field(lastmodified; rec."Last Modified Date Time")
+                {
+                    ApplicationArea = all;
+                }
 
-                }
-                field(Site_Name; rec."Site Name")
-                {
-                    ApplicationArea = all;
 
-                }
-                field(Address; rec.Address)
-                {
-                    ApplicationArea = all;
-                }
-                field(Address_2; rec."Address 2")
-                {
-                    ApplicationArea = all;
-                }
-                field(City; rec.City)
-                {
-                    ApplicationArea = all;
-                }
-                field(Post_Code; rec."Post Code")
-                {
-                    ApplicationArea = all;
-                }
-                field(County; rec.County)
-                {
-                    ApplicationArea = all;
-                }
-                field(Country_Region_Code; rec."Country/Region Code")
-                {
-                    ApplicationArea = all;
-                }
 
-                field(Vat_Number; rec."Vat Number")
-                {
-                    ApplicationArea = all;
-                }
 
-                field(Valid_From; rec."Valid From")
-                {
-                    ApplicationArea = all;
-                }
-                field(Valid_To; rec."Valid To")
-                {
-                    ApplicationArea = all;
-                }
-                field(Record_Owner; rec."Record Owner")
-                {
-                    ApplicationArea = all;
-                }
-                field(Change_Note; rec."Change Note")
-                {
-                    ApplicationArea = all;
-                }
-                field(SystemModifiedAt; rec.SystemModifiedAt)
-                {
-                    ApplicationArea = all;
-                }
-                field(SystemCreatedAt; Rec.SystemCreatedAt)
-                {
-                    ApplicationArea = all;
-                }
             }
         }
     }
-    trigger
-    OnOpenPage()
-    begin
-        rec.setrange(ActiveRec, true)
-    end;
 }
