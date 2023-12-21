@@ -96,6 +96,7 @@ page 61106 FBM_FAPost_PBI
                 fa.ChangeCompany(comp.Name);
                 fa.CalcFields(FBM_IsEGM);
                 fa.SetRange("Serial No.", rec.F04);
+                fa.SetFilter(FBM_Status, '<>%1', fa.FBM_Status::"I. Sold");
                 fa.SetRange(FBM_IsEGM, true);
                 if fa.FindFirst() then
                     if fa.IsActive then begin
@@ -110,6 +111,9 @@ page 61106 FBM_FAPost_PBI
                                 fa.FBM_Status := fa.FBM_Status::"G. For Disposal";
                             '8':
                                 fa.FBM_Status := fa.FBM_Status::"H. Scrapped";
+                            '9':
+                                fa.FBM_Status := fa.FBM_Status::"I. Sold";
+
                             else
                                 fa.FBM_Status := fa.FBM_Status;
 

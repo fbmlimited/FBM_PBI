@@ -93,34 +93,34 @@ page 61107 FBM_SitePost_PBI
                         '1':
                             begin
 
-                                csite.Status := csite.Status::OPERATIONAL;
+                                csite.validate(Status, csite.Status::OPERATIONAL);
                             end;
                         '2':
                             begin
 
-                                csite.Status := csite.Status::"HOLD OPERATION";
+                                csite.Validate(Status, csite.Status::"HOLD OPERATION");
                             end;
                         '3':
                             begin
 
-                                csite.Status := csite.Status::"STOP OPERATION";
+                                csite.Validate(Status, csite.Status::"STOP OPERATION");
                             end;
                         '4':
                             begin
 
-                                csite.Status := csite.Status::"PRE-OPENING ";
+                                csite.Validate(Status, csite.Status::"PRE-OPENING ");
                             end;
 
                         else begin
 
-                            csite.Status := csite.Status::"DBC ADMIN";
+                            csite.Validate(Status, csite.Status::"DBC ADMIN");
                         end;
 
 
                     end;
 
 
-                    site.Modify();
+                    csite.Modify();
                 end;
 
             until comp.Next() = 0;
