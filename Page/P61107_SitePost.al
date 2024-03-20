@@ -92,13 +92,13 @@ page 61107 FBM_SitePost_PBI
                     case rec.F05 of
                         '1':
                             begin
-
-                                csite.validate(Status, csite.Status::OPERATIONAL);
+                                if csite.Status <> csite.Status::"STOP OPERATION" then // don't change if STOP OPERATION (preserve FBM records)
+                                    csite.validate(Status, csite.Status::OPERATIONAL);
                             end;
                         '2':
                             begin
-
-                                csite.Validate(Status, csite.Status::"HOLD OPERATION");
+                                if csite.Status <> csite.Status::"STOP OPERATION" then
+                                    csite.Validate(Status, csite.Status::"HOLD OPERATION");
                             end;
                         '3':
                             begin
@@ -107,13 +107,13 @@ page 61107 FBM_SitePost_PBI
                             end;
                         '4':
                             begin
-
-                                csite.Validate(Status, csite.Status::"PRE-OPENING ");
+                                if csite.Status <> csite.Status::"STOP OPERATION" then
+                                    csite.Validate(Status, csite.Status::"PRE-OPENING ");
                             end;
 
                         else begin
-
-                            csite.Validate(Status, csite.Status::"DBC ADMIN");
+                            if csite.Status <> csite.Status::"STOP OPERATION" then
+                                csite.Validate(Status, csite.Status::"DBC ADMIN");
                         end;
 
 

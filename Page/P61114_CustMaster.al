@@ -30,7 +30,7 @@ page 61114 FBM_CustMaster_PBI
                 {
                     ApplicationArea = all;
                 }
-                field(Name3; rec."FBM_Name 3")
+                field(Name3; rec."FBM_Name3")
                 {
                     ApplicationArea = all;
                 }
