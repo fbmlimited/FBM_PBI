@@ -1,12 +1,12 @@
 page 61115 FBM_InventoryOrion_PBI
 {
-    // PageType = API;
-    // Caption = 'InventoryOrion';
-    // APIPublisher = 'FBMGroup';
-    // APIGroup = 'app1';
-    // APIVersion = 'v2.0', 'v1.0';
-    // EntityName = 'InventoryOrion';
-    // EntitySetName = 'InventoryOrion';
+    PageType = API;
+    Caption = 'InventoryOrion';
+    APIPublisher = 'FBMGroup';
+    APIGroup = 'app1';
+    APIVersion = 'v2.0', 'v1.0';
+    EntityName = 'InventoryOrion';
+    EntitySetName = 'InventoryOrion';
     SourceTable = Item;
 
     DelayedInsert = true;
@@ -37,7 +37,7 @@ page 61115 FBM_InventoryOrion_PBI
                     ApplicationArea = all;
 
                 }
-                field("Unit of Measure"; Rec."Base Unit of Measure")
+                field("UOM"; Rec."Base Unit of Measure")
                 {
                     Caption = 'UOM';
                     ApplicationArea = all;
@@ -58,6 +58,18 @@ page 61115 FBM_InventoryOrion_PBI
                 field(MinStock; Rec.FBM_MinStock)
                 {
                     Caption = 'Min. Stock';
+                    ApplicationArea = all;
+
+                }
+                field(Categories; Rec.FBM_MultiCat)
+                {
+                    Caption = 'Categories';
+                    ApplicationArea = all;
+
+                }
+                field(tracking; rec."Item Tracking Code")
+                {
+                    Caption = 'Tracking Code';
                     ApplicationArea = all;
 
                 }

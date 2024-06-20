@@ -136,13 +136,14 @@ page 61105 FBM_FA_PBI
 
     begin
         company.FindFirst();
+        siteloc := '';
         repeat
             csite.Reset();
             csite.ChangeCompany(company.Name);
             compinfo.ChangeCompany(company.Name);
             compinfo.get();
             if csite.FindFirst() then begin
-                siteloc := '';
+
                 if (rec.FBM_Site <> '') and (compinfo."Custom System Indicator Text" = rec.FBM_Lessee) then begin
                     csite.SetRange(SiteGrCode, rec.FBM_Site);
                     if csite.FindFirst() then

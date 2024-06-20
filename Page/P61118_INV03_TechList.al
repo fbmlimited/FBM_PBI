@@ -4,8 +4,8 @@ page 61118 FBM_TechList_PBI
     PageType = api;
     APIGroup = 'app1';
     APIPublisher = 'FBMGroup';
-    EntitySetName = 'FADetail';
-    EntityName = 'FADetail';
+    EntitySetName = 'TechListWS';
+    EntityName = 'TechListWS';
     APIVersion = 'v2.0', 'v1.0';
     UsageCategory = Lists;
     SourceTable = Bin;
@@ -31,7 +31,7 @@ page 61118 FBM_TechList_PBI
                 }
                 field(Name; rec.Description)
                 {
-                    Caption = 'Technician';
+                    Caption = 'Technician name';
 
                 }
 

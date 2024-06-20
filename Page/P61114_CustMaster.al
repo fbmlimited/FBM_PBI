@@ -1,4 +1,4 @@
-page 61114 FBM_CustMaster_PBI
+page 61122 FBM_CustMaster_PBI
 {
     PageType = API;
     Caption = 'CustMaster';
@@ -74,6 +74,7 @@ page 61114 FBM_CustMaster_PBI
                 {
                     ApplicationArea = all;
                 }
+
 
 
 

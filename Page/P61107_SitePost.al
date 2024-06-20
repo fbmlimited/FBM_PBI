@@ -60,6 +60,8 @@ page 61107 FBM_SitePost_PBI
         comp: record Company;
         site: record FBM_Site;
         csite: record FBM_CustomerSite_C;
+        cos: record FBM_CustOpSite;
+        cinfo: record "Company Information";
     begin
         buffer.SetRange(Imported, true);
         if buffer.FindLast() then
@@ -85,39 +87,52 @@ page 61107 FBM_SitePost_PBI
             rec.entryNo := 1;
         if comp.FindFirst() then
             repeat
+                cinfo.ChangeCompany(comp.Name);
                 csite.ChangeCompany(comp.Name);
                 csite.SetRange("Site Code", rec.F04);
                 if csite.FindFirst() then begin
+                    cos.setrange("Cust Loc Code", csite."Customer No.");
+                    cos.SetRange("Site Loc Code", csite."Site Code");
+                    cos.SetRange(Subsidiary, cinfo.FBM_FALessee + '*');
+                    if cos.FindFirst() then
+                        case rec.F05 of
+                            '1':
+                                begin
+                                    if csite.Status <> csite.Status::"STOP OPERATION" then begin // don't change if STOP OPERATION (preserve FBM records)
+                                        csite.validate(Status, csite.Status::OPERATIONAL);
+                                        cos.IsActive := true;
+                                    end;
+                                end;
+                            '2':
+                                begin
+                                    if csite.Status <> csite.Status::"STOP OPERATION" then begin
+                                        csite.Validate(Status, csite.Status::"HOLD OPERATION");
+                                        cos.IsActive := true;
+                                    end;
+                                end;
+                            '3':
+                                begin
 
-                    case rec.F05 of
-                        '1':
-                            begin
-                                if csite.Status <> csite.Status::"STOP OPERATION" then // don't change if STOP OPERATION (preserve FBM records)
-                                    csite.validate(Status, csite.Status::OPERATIONAL);
-                            end;
-                        '2':
-                            begin
-                                if csite.Status <> csite.Status::"STOP OPERATION" then
-                                    csite.Validate(Status, csite.Status::"HOLD OPERATION");
-                            end;
-                        '3':
-                            begin
+                                    csite.Validate(Status, csite.Status::"STOP OPERATION");
+                                    cos.IsActive := false;
+                                end;
+                            '4':
+                                begin
+                                    if csite.Status <> csite.Status::"STOP OPERATION" then begin
+                                        csite.Validate(Status, csite.Status::"PRE-OPENING ");
+                                        cos.IsActive := false;
+                                    end;
+                                end;
 
-                                csite.Validate(Status, csite.Status::"STOP OPERATION");
-                            end;
-                        '4':
-                            begin
-                                if csite.Status <> csite.Status::"STOP OPERATION" then
-                                    csite.Validate(Status, csite.Status::"PRE-OPENING ");
+                            else begin
+                                if csite.Status <> csite.Status::"STOP OPERATION" then begin
+                                    csite.Validate(Status, csite.Status::"DBC ADMIN");
+                                    cos.IsActive := false;
+                                end;
                             end;
 
-                        else begin
-                            if csite.Status <> csite.Status::"STOP OPERATION" then
-                                csite.Validate(Status, csite.Status::"DBC ADMIN");
+
                         end;
-
-
-                    end;
 
 
                     csite.Modify();

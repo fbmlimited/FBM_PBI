@@ -55,6 +55,11 @@ page 61106 FBM_FAPost_PBI
                     Caption = 'Update Time';
 
                 }
+                field(Location_Code; Rec.F10)
+                {
+                    Caption = 'Location Code';
+
+                }
 
 
             }
@@ -124,7 +129,8 @@ page 61106 FBM_FAPost_PBI
                         csite.setrange("Site Code", rec.F06);
                         if csite.FindFirst() then
                             fa.FBM_Site := csite.SiteGrCode;
-
+                        fa."FA Location Code" := rec.F10;
+                        evaluate(fa.FBM_Segment2, rec.F11);
                         fa.Modify();
                     end;
 

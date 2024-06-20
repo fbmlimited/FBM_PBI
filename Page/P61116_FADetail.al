@@ -26,7 +26,7 @@ page 61116 FBM_FADetail_PBI
                 }
                 field(Description; Rec.Description)
                 {
-                    Caption = 'Description';
+                    Caption = 'Description';//D
 
                 }
                 field(FA_No; Rec."Description 2")
@@ -44,14 +44,10 @@ page 61116 FBM_FADetail_PBI
                     Caption = 'SubClass Code';
 
                 }
-                field(IsEGM; Rec.FBM_IsEGM)
-                {
-                    Caption = 'Is EGM';
 
-                }
                 field(Serial_No; Rec."Serial No.")
                 {
-                    Caption = 'Serial No.';
+                    Caption = 'Serial No.';//B
 
                 }
                 field(Brand; Rec.FBM_Brand)
@@ -64,19 +60,19 @@ page 61116 FBM_FADetail_PBI
                     Caption = 'Lessee';
 
                 }
-                field(Site_Gr_Code; Rec.FBM_Site)
+                field(Site_Gr_Code_Location; Rec.FBM_Site)
                 {
                     Caption = 'Site Gr. Code';
 
                 }
-                field(site_Loc_code; siteloc)
+                field(site_Loc_code; siteloc + rec."FA Location Code")
                 {
-                    Caption = 'Site Loc. Code';
+                    Caption = 'Site Loc. Code/Location';//E
 
                 }
-                field(sitename; sitename)
+                field(site_loc_name; sitename + locname)
                 {
-                    Caption = 'Site Name';
+                    Caption = 'Site/Location Name';//F
 
                 }
                 field(Cust_Gr_Code; custgr)
@@ -86,7 +82,7 @@ page 61116 FBM_FADetail_PBI
                 }
                 field(Cust_Loc_Code; custloc)
                 {
-                    Caption = 'Cust. Loc. Code';
+                    Caption = 'Cust. Loc. Code';//J
 
                 }
                 field(Cust_Name; custname)
@@ -106,19 +102,20 @@ page 61116 FBM_FADetail_PBI
 
                 field(Acquisition_Date; acqdate)
                 {
-                    Caption = 'Acquisition Date';
+                    Caption = 'Acquisition Date';//A
 
                 }
                 field(Acquisition_Cost; acqcost)
                 {
-                    Caption = 'Acquisition Cost';
+                    Caption = 'Acquisition Cost';//I
 
                 }
                 field(Depreciation_Date; datedepr)
                 {
-                    Caption = 'Start Depreciation Date';
+                    Caption = 'Start Depreciation Date';//C
 
                 }
+
                 field(netbook; netbook)
                 {
                     Caption = 'Net Book Value';
@@ -129,6 +126,17 @@ page 61116 FBM_FADetail_PBI
                     Caption = 'Subsidiary';
 
                 }
+                field(Model; Rec.FBM_Model)
+                {
+                    Caption = 'Model';//K
+
+                }
+                field(Segment; Rec.FBM_Segment2)
+                {
+                    Caption = 'Segment';//L
+
+                }
+
 
 
 
@@ -150,6 +158,7 @@ page 61116 FBM_FADetail_PBI
                 compinfo.get;
                 fa.ChangeCompany(company.Name);
                 fasc.ChangeCompany(company.Name);
+                fa.SetRange(FBM_IsEGM, true);
 
                 if fa.FindFirst() then
                     repeat
@@ -230,6 +239,9 @@ page 61116 FBM_FADetail_PBI
                     acqcost := 0;
                     datedepr := 0D;
                     netbook := 0;
+                    locname := '';
+                    if loc.get(rec."FA Location Code") then
+                        locname := loc.Name;
 
                     siteloc := csite."Site Code";
                     csite.CalcFields("Site Name_FF");
@@ -281,6 +293,7 @@ page 61116 FBM_FADetail_PBI
         subsidiary: text;
         siteloc: code[20];
         sitename: text[100];
+        locname: text[100];
         customer: record customer;
 
         custloc: code[20];
@@ -291,5 +304,7 @@ page 61116 FBM_FADetail_PBI
         datedepr: date;
         acqcost: Decimal;
         netbook: Decimal;
+        loc: record Location;
+
 
 }

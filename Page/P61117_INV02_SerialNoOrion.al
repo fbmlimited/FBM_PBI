@@ -59,6 +59,7 @@ page 61117 FBM_SerialNo_PBI
 
 
 
+
             }
         }
     }
@@ -71,6 +72,7 @@ page 61117 FBM_SerialNo_PBI
         loc: record Location;
         serial: code[50];
         i: integer;
+        rese: record "Reservation Entry";
     begin
         i := 1;
         // from ILE : serial no, location, site
@@ -83,13 +85,19 @@ page 61117 FBM_SerialNo_PBI
                         ile2.SetRange("Item No.", ile."Item No.");
                         ile2.SetRange(FBM_Site, csite."Site Code");
                         ile2.SetRange("Serial No.", ile."Serial No.");
+                        ile2.SetRange("Location Code", ile."Location Code");
                         if ile2.FindFirst() then begin
+
                             rec.Init();
                             rec."Entry No." := i;
                             rec."Item No." := ile."Item No.";
                             rec.Description := ile.Description;
                             rec."Serial No." := ile."Serial No.";
                             rec.FBM_Site := csite."Site Code";
+                            rec."Location Code" := ile."Location Code";
+                            rec.FBM_Pedimento := ile.FBM_Pedimento;
+                            if rese.FindFirst() then
+                                rec.FBM_BinCode := rese.FBM_BinCode;
                             ile2.CalcSums(Quantity);
                             if (ile2.Quantity <> 0) and (ile."Serial No." <> '') and (csite."Site Code" <> '') then begin
                                 rec.Quantity := ile2.Quantity;
@@ -111,17 +119,21 @@ page 61117 FBM_SerialNo_PBI
                         ile2.SetRange("Location Code", loc.Code);
                         ile2.SetRange("Serial No.", ile."Serial No.");
                         if ile2.FindFirst() then begin
+                            rese.SetRange("Item Ledger Entry No.", ile."Entry No.");
                             rec.Init();
                             rec."Entry No." := i;
                             rec."Item No." := ile."Item No.";
                             rec.Description := ile.Description;
                             rec."Serial No." := ile."Serial No.";
                             rec."Location Code" := loc.Code;
+                            rec.FBM_Pedimento := ile.FBM_Pedimento;
                             ile2.CalcSums(Quantity);
                             if (ile2.Quantity <> 0) and (ile."Serial No." <> '') then begin
 
 
                                 rec.Quantity := ile2.Quantity;
+                                if rese.FindFirst() then
+                                    rec.FBM_BinCode := rese.FBM_BinCode;
                                 if rec.Insert() then begin i += 1; end;
                             end;
                         end;
@@ -132,17 +144,6 @@ page 61117 FBM_SerialNo_PBI
 
     end;
 
-    trigger
-    OnAfterGetRecord()
-    var
-
-
-    begin
-
-    end;
-
-
-    var
 
 
 }

@@ -1,25 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
-        {
-
-            "name": "Debug",
-            "type": "al",
-            "request": "launch",
-            "server": "http://localhost",
-            "serverInstance": "bc220",
-            "port": 7089,
-            "authentication": "UserPassword",
-            "startupObjectId": 22,
-            "breakOnError": true,
-            "breakOnRecordWrite": false,
-            "launchBrowser": true,
-            "enableSqlInformationDebugger": true,
-            "enableLongRunningSqlStatements": true,
-            "longRunningSqlStatementsThreshold": 500,
-            "numberOfSqlStatements": 10,
-            "schemaUpdateMode": "ForceSync"
-          },
+       
           {
   "name": "test",
   "type": "al",
@@ -67,7 +49,7 @@
             "server": "https://businesscentral.dynamics.com",
             "tenant": "9e0bb323-0ae5-4ab5-baed-25b8c94cf882",
             "authentication": "AAD",
-            "environmentName": "CopyPRD2",
+            "environmentName": "CopyProd_200412",
             "startupObjectId": 22,
             "startupObjectType": "Page",
             "breakOnError": "All",
@@ -112,9 +94,9 @@
             "name": "test",
             "type": "al",
             "request": "launch",
-            "server": "http://10.0.0.4/acetest",
-            "serverInstance": "ACETest",
-            "port": 6004,
+            "server": "http://10.0.0.4/phtest",
+            "serverInstance": "PHTest",
+            "port": 9015,
             "authentication": "UserPassword",
             "startupObjectId": 22,
             "breakOnError": true,
@@ -162,6 +144,24 @@
             
         },
         {
+            "type": "al",
+            "request": "launch",
+            "name": "live",
+            "server": "http://10.0.0.4",
+            "serverInstance": "BC220",
+            "port": 2215,
+            "authentication": "UserPassword",
+            "startupObjectId": 22,
+            "startupObjectType": "Page",
+            "breakOnError": true,
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true,
+            
+            
+            
+        },
+        {
             "name": "Microsoft cloud sandbox",
             "request": "launch",
             "type": "al",
@@ -169,7 +169,7 @@
             "server": "https://businesscentral.dynamics.com",
             "tenant": "9e0bb323-0ae5-4ab5-baed-25b8c94cf882",
             "authentication": "AAD",
-            "environmentName": "DevTest",
+            "environmentName": "DEV_FBM_240612",
             "startupObjectId": 22,
             "startupObjectType": "Page",
             "breakOnError": "All",
