@@ -34,7 +34,7 @@ page 61121 FBM_CustReq_PBI
                     ApplicationArea = ALL;
 
                 }
-                field(Name_2; Rec."Name 2")
+                field(Name_2; Rec."Name 2b")
                 {
                     ApplicationArea = ALL;
 
@@ -44,7 +44,7 @@ page 61121 FBM_CustReq_PBI
                     ApplicationArea = ALL;
 
                 }
-                field(Address_2; Rec."Address 2")
+                field(Address_2; Rec."Address 2b")
                 {
                     ApplicationArea = ALL;
 

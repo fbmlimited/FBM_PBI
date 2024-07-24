@@ -60,6 +60,16 @@ page 61106 FBM_FAPost_PBI
                     Caption = 'Location Code';
 
                 }
+                field(Model; Rec.F11)
+                {
+                    Caption = 'Model';
+
+                }
+                field(Segment; Rec.F12)
+                {
+                    Caption = 'Segment';
+
+                }
 
 
             }
@@ -130,7 +140,8 @@ page 61106 FBM_FAPost_PBI
                         if csite.FindFirst() then
                             fa.FBM_Site := csite.SiteGrCode;
                         fa."FA Location Code" := rec.F10;
-                        evaluate(fa.FBM_Segment2, rec.F11);
+                        fa.FBM_Model := rec.F11;
+                        evaluate(fa.FBM_Segment2, rec.F12);
                         fa.Modify();
                     end;
 
