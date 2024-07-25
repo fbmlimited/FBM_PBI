@@ -4,8 +4,8 @@ page 61105 FBM_FA_PBI
     PageType = api;
     APIGroup = 'app1';
     APIPublisher = 'FBMGroup';
-    EntitySetName = 'SubsSite';
-    EntityName = 'SubsSite';
+    EntitySetName = 'FA';
+    EntityName = 'FA';
     APIVersion = 'v2.0', 'v1.0';
     UsageCategory = Lists;
     SourceTable = "Fixed Asset";

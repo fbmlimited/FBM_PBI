@@ -4,8 +4,8 @@ page 61104 FBM_Subsidiary_PBI
     PageType = API;
     APIGroup = 'app1';
     APIPublisher = 'FBMGroup';
-    EntitySetName = 'SubsSite';
-    EntityName = 'SubsSite';
+    EntitySetName = 'Subsidiary';
+    EntityName = 'Subsidiary';
     APIVersion = 'v2.0', 'v1.0';
     SourceTable = FBM_Subsidiary;
     DelayedInsert = true;

@@ -4,8 +4,8 @@ page 61108 FBM_FinAttributes_PBI
     PageType = API;
     APIGroup = 'app1';
     APIPublisher = 'FBMGroup';
-    EntitySetName = 'SubsSite';
-    EntityName = 'SubsSite';
+    EntitySetName = 'FinAttributes';
+    EntityName = 'FinAttributes';
     APIVersion = 'v2.0', 'v1.0';
     SourceTable = FBM_FinAttributes;
     DelayedInsert = true;

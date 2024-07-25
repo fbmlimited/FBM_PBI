@@ -1,0 +1,85 @@
+page 61125 FBM_CustMast_PBI
+{
+    Caption = 'Customer Master WS';
+    PageType = API;
+    APIGroup = 'app1';
+    APIPublisher = 'FBMGroup';
+    EntitySetName = 'CustMast';
+    EntityName = 'CustMast';
+    APIVersion = 'v2.0', 'v1.0', 'v2.1';
+    UsageCategory = Lists;
+    SourceTable = FBM_Customer;
+    DelayedInsert = true;
+    MultipleNewLines = true;
+    AutoSplitKey = false;
+    Description = '16.7';
+
+    layout
+    {
+        area(Content)
+        {
+            repeater(GroupName)
+            {
+                field(No; Rec."No.")
+                {
+                    Caption = 'No.';
+                }
+                field(Version; Rec.Version)
+                {
+                    Caption = 'Version';
+                }
+                field(Name; rec.Name)
+                {
+                    Caption = 'Name';
+                }
+                field(Name2; rec."Name 2")
+                {
+                    Caption = 'Name 2';
+                }
+                field(Address; Rec.Address)
+                {
+                    Caption = 'Address';
+                }
+                field(Address2; Rec."Address 2")
+                {
+                    Caption = 'Address 2';
+                }
+                field(City; Rec.City)
+                {
+                    Caption = 'City';
+                }
+                field(PostCode; Rec."Post Code")
+                {
+                    Caption = 'Post Code';
+                }
+                field(County; Rec.County)
+                {
+                    Caption = 'County';
+                }
+                field(CountryRegion; Rec."Country/Region Code")
+                {
+                    Caption = 'Country';
+                }
+                field(VATRegistrationNo; Rec."VAT Registration No.")
+                {
+                    Caption = 'VAT Reg No';
+                }
+                field(Group; Rec.FBM_Group)
+                {
+                    Caption = 'Group';
+                }
+                field(SubGroup; Rec.FBM_SubGroup)
+                {
+                    Caption = 'Subgroup';
+                }
+            }
+        }
+    }
+
+    trigger
+    OnOpenPage()
+    begin
+        rec.SetRange(ActiveRec, true);
+    end;
+
+}

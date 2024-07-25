@@ -4,8 +4,8 @@ page 61117 FBM_SerialNo_PBI
     PageType = api;
     APIGroup = 'app1';
     APIPublisher = 'FBMGroup';
-    EntitySetName = 'FADetail';
-    EntityName = 'FADetail';
+    EntitySetName = 'SerialNo';
+    EntityName = 'SerialNo';
     APIVersion = 'v2.0', 'v1.0';
     UsageCategory = Lists;
     SourceTable = "Reservation Entry";
