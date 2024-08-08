@@ -1,18 +1,18 @@
-page 61126 FBM_SiteMast_PBI
+page 61127 FBM_CustMastMX_PBI
 {
-    Caption = 'Site Master WS';
+    Caption = 'Customer Master MX WS';
     PageType = API;
     APIGroup = 'app1';
     APIPublisher = 'FBMGroup';
-    EntitySetName = 'SiteMast';
-    EntityName = 'SiteMast';
+    EntitySetName = 'CustMastMX';
+    EntityName = 'CustMastMX';
     APIVersion = 'v2.0', 'v1.0', 'v2.1';
     UsageCategory = Lists;
-    SourceTable = FBM_Site;
+    SourceTable = FBM_Customer;
     DelayedInsert = true;
     MultipleNewLines = true;
     AutoSplitKey = false;
-    Description = '17.0';
+    Description = '17.1';
 
     layout
     {
@@ -20,7 +20,7 @@ page 61126 FBM_SiteMast_PBI
         {
             repeater(GroupName)
             {
-                field(SiteCode; Rec."Site Code")
+                field(No; Rec."No.")
                 {
                     Caption = 'No.';
                 }
@@ -28,11 +28,11 @@ page 61126 FBM_SiteMast_PBI
                 {
                     Caption = 'Version';
                 }
-                field(Name; Rec."Site Name")
+                field(Name; rec.Name)
                 {
                     Caption = 'Name';
                 }
-                field(Name2; Rec."Site Name 2")
+                field(Name2; rec."Name 2")
                 {
                     Caption = 'Name 2';
                 }
@@ -60,9 +60,17 @@ page 61126 FBM_SiteMast_PBI
                 {
                     Caption = 'Country';
                 }
-                field(VatNumber; Rec."Vat Number")
+                field(VATRegistrationNo; Rec."VAT Registration No.")
                 {
                     Caption = 'VAT Reg No';
+                }
+                field(Group; Rec.FBM_Group)
+                {
+                    Caption = 'Group';
+                }
+                field(SubGroup; Rec.FBM_SubGroup)
+                {
+                    Caption = 'Subgroup';
                 }
                 field(Valid_From; Rec."Valid From")
                 {
@@ -89,6 +97,7 @@ page 61126 FBM_SiteMast_PBI
     OnOpenPage()
     begin
         rec.SetRange(ActiveRec, true);
+        rec.SetRange("Country/Region Code", 'MX');
     end;
 
 }

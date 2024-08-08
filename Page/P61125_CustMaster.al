@@ -12,7 +12,7 @@ page 61125 FBM_CustMast_PBI
     DelayedInsert = true;
     MultipleNewLines = true;
     AutoSplitKey = false;
-    Description = '16.7';
+    Description = '17.0';
 
     layout
     {
@@ -72,6 +72,23 @@ page 61125 FBM_CustMast_PBI
                 {
                     Caption = 'Subgroup';
                 }
+                field(Valid_From; Rec."Valid From")
+                {
+                    Caption = 'Valid From';
+                }
+                field(Valid_To; Rec."Valid To")
+                {
+                    Caption = 'Valid To';
+                }
+                field(Record_Owner; Rec."Record Owner")
+                {
+                    Caption = 'Record Owner';
+                }
+                field(Change_Note; Rec."Change Note")
+                {
+                    Caption = 'Change Note';
+                }
+
             }
         }
     }

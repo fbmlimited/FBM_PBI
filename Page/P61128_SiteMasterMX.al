@@ -1,11 +1,11 @@
-page 61126 FBM_SiteMast_PBI
+page 61128 FBM_SiteMastMX_PBI
 {
-    Caption = 'Site Master WS';
+    Caption = 'Site Master MX WS';
     PageType = API;
     APIGroup = 'app1';
     APIPublisher = 'FBMGroup';
-    EntitySetName = 'SiteMast';
-    EntityName = 'SiteMast';
+    EntitySetName = 'SiteMastMX';
+    EntityName = 'SiteMastMX';
     APIVersion = 'v2.0', 'v1.0', 'v2.1';
     UsageCategory = Lists;
     SourceTable = FBM_Site;
@@ -89,6 +89,7 @@ page 61126 FBM_SiteMast_PBI
     OnOpenPage()
     begin
         rec.SetRange(ActiveRec, true);
+        rec.SetRange("Country/Region Code", 'MX');
     end;
 
 }

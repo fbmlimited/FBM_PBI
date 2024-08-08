@@ -47,8 +47,8 @@ page 61119 FBM_LocList_PBI
     trigger
     OnOpenPage()
     begin
-        rec.SetFilter(Code, '<>%1 & <>%2', 'TEC*', 'SITE*');
-        rec.FindFirst();
+        // rec.SetFilter(Code, '<>%1 & <>%2', 'TEC*', 'SITE*');
+        // rec.FindFirst();
         // repeat
         //     if rec.FBM_NewItem or rec.FBM_UsedItem then rec.Mark(true);
         // until rec.Next() = 0;
