@@ -4,8 +4,8 @@ page 61105 FBM_FA_PBI
     PageType = api;
     APIGroup = 'app1';
     APIPublisher = 'FBMGroup';
-    EntitySetName = 'FA';
-    EntityName = 'FA';
+    EntitySetName = 'FAList';
+    EntityName = 'FAList';
     APIVersion = 'v2.0', 'v1.0';
     UsageCategory = Lists;
     SourceTable = "Fixed Asset";
@@ -146,6 +146,7 @@ page 61105 FBM_FA_PBI
 
                 if (rec.FBM_Site <> '') and (compinfo."Custom System Indicator Text" = rec.FBM_Lessee) then begin
                     csite.SetRange(SiteGrCode, rec.FBM_Site);
+                    csite.SetRange(ActiveRec, true);
                     if csite.FindFirst() then
                         siteloc := csite."Site Code";
                 end;

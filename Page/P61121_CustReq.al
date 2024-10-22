@@ -7,7 +7,7 @@ page 61121 FBM_CustReq_PBI
     EntitySetName = 'CustSitePostWS';
     EntityName = 'CustSitePostWS';
     APIVersion = 'v2.0', 'v1.0';
-    UsageCategory = Lists;
+    //UsageCategory = Lists;
     SourceTable = FBM_CustSiteReq;
     DelayedInsert = true;
     MultipleNewLines = true;

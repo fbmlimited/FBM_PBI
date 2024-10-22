@@ -7,7 +7,7 @@ page 61114 FBM_GetILE_PBI
     EntitySetName = 'GetILE';
     EntityName = 'GetILE';
     APIVersion = 'v2.0', 'v1.0';
-    UsageCategory = Lists;
+    //UsageCategory = Lists;
     SourceTable = "Item Ledger Entry";
     DelayedInsert = true;
     MultipleNewLines = true;

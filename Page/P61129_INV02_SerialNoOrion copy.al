@@ -1,18 +1,20 @@
-page 61117 FBM_SerialNo_PBI
+page 61129 FBM_SerialNoCopy_PBI
 {
-    Caption = 'SerialNoWS';
-    PageType = API;
-    APIGroup = 'app1';
-    APIPublisher = 'FBMGroup';
-    EntitySetName = 'SerialNo';
-    EntityName = 'SerialNo';
-    APIVersion = 'v2.0', 'v1.0';
-    //UsageCategory = Lists;
+    Caption = 'SerialNoWS List';
+    PageType = List;
+    // APIGroup = 'app1';
+    // APIPublisher = 'FBMGroup';
+    // EntitySetName = 'SerialNo';
+    // EntityName = 'SerialNo';
+    // APIVersion = 'v2.0', 'v1.0';
+    UsageCategory = Lists;
     SourceTable = "Reservation Entry";
     SourceTableTemporary = true;
     DelayedInsert = true;
+    ApplicationArea = all;
 
-    Description = '19.1';
+
+
 
     layout
     {
@@ -22,20 +24,22 @@ page 61117 FBM_SerialNo_PBI
             {
                 field(No; Rec."Item No.")
                 {
-                    Caption = 'No.';
+                    Caption = 'Item No.';
                     ApplicationArea = all;
 
                 }
-                field(Description; Rec.Description)
+                field(itemdesc; itemdesc)
                 {
-                    Caption = 'Description';
+                    Caption = 'Item Description';
                     ApplicationArea = all;
+
                 }
-                field(MachineType; MachineType)
-                {
-                    Caption = 'Machine type';
-                    ApplicationArea = all;
-                }
+
+                // field(Description; Rec.Description)
+                // {
+                //     Caption = 'Description';
+                //     ApplicationArea = all;
+                // }
                 field(Serial_No; Rec."Serial No.")
                 {
                     Caption = 'Serial no.';
@@ -47,11 +51,19 @@ page 61117 FBM_SerialNo_PBI
                     Caption = 'Location Code';
                     ApplicationArea = all;
                 }
+
+                field(Locdesc; Locdesc)
+                {
+                    Caption = 'Location Name';
+                    ApplicationArea = all;
+
+                }
                 field(istemp; istemp)
                 {
                     Caption = 'Is Temporary';
                     ApplicationArea = all;
                 }
+
                 field(Technician; Rec.FBM_BinCode)
                 {
                     Caption = 'Technician Code';
@@ -154,15 +166,22 @@ page 61117 FBM_SerialNo_PBI
                         end;
                     until ile.Next() = 0;
             until loc.next = 0;
+
+        //from Q7300: serial no, bin
+
     end;
-    //from Q7300: serial no, bin
+
     trigger
     OnAfterGetRecord()
-    var
-        item: record Item;
     begin
-        if item.get(rec."Item No.") then
+        itemdesc := '';
+        Locdesc := '';
+        if loc.get(rec."Location Code") then
+            Locdesc := loc.Name;
+        if item.get(rec."Item No.") then begin
+            itemdesc := item.Description;
             machinetype := format(item.FBM_MachineType);
+        end;
         if loc.get(rec."Location Code") then
             if loc.FBM_TransitLoc then
                 istemp := 1
@@ -172,12 +191,14 @@ page 61117 FBM_SerialNo_PBI
 
     end;
 
-
     var
-        machinetype: text[20];
-        loc: record Location;
+        itemdesc: text[100];
+        item: record Item;
+        Locdesc: text[100];
+        Loc: record Location;
+
+
         istemp: Integer;
-
-
+        machinetype: text[20];
 
 }

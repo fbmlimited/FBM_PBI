@@ -7,7 +7,7 @@ page 61118 FBM_TechList_PBI
     EntitySetName = 'TechListWS';
     EntityName = 'TechListWS';
     APIVersion = 'v2.0', 'v1.0';
-    UsageCategory = Lists;
+    //UsageCategory = Lists;
     SourceTable = Bin;
     DelayedInsert = true;
 

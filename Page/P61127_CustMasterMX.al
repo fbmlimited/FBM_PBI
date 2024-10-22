@@ -7,7 +7,7 @@ page 61127 FBM_CustMastMX_PBI
     EntitySetName = 'CustMastMX';
     EntityName = 'CustMastMX';
     APIVersion = 'v2.0', 'v1.0', 'v2.1';
-    UsageCategory = Lists;
+    //UsageCategory = Lists;
     SourceTable = FBM_Customer;
     DelayedInsert = true;
     MultipleNewLines = true;

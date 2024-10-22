@@ -7,7 +7,7 @@ page 61116 FBM_FADetail_PBI
     EntitySetName = 'FADetail';
     EntityName = 'FADetail';
     APIVersion = 'v2.0', 'v1.0';
-    UsageCategory = Lists;
+    //UsageCategory = Lists;
     SourceTable = "Fixed Asset";
     SourceTableTemporary = true;
     DelayedInsert = true;
@@ -230,6 +230,7 @@ page 61116 FBM_FADetail_PBI
                 csite.Reset();
                 //if (rec.FBM_Site <> '') and (compinfo."Custom System Indicator Text" = rec.FBM_Lessee) then begin
                 csite.SetRange(SiteGrCode, rec.FBM_Site);
+                csite.SetRange(ActiveRec, true);
                 if csite.FindFirst() then begin
                     sitename := '';
                     custloc := '';

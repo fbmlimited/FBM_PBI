@@ -7,7 +7,7 @@ page 61124 FBM_VendorList_PBI
     EntitySetName = 'VendorList';
     EntityName = 'VendorList';
     APIVersion = 'v2.0', 'v1.0', 'v2.1';
-    UsageCategory = Lists;
+    //UsageCategory = Lists;
     SourceTable = Vendor;
     DelayedInsert = true;
     MultipleNewLines = true;

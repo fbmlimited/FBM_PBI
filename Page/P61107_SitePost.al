@@ -90,6 +90,7 @@ page 61107 FBM_SitePost_PBI
                 cinfo.ChangeCompany(comp.Name);
                 csite.ChangeCompany(comp.Name);
                 csite.SetRange("Site Code", rec.F04);
+                csite.SetRange(ActiveRec, true);
                 if csite.FindFirst() then begin
                     cos.setrange("Cust Loc Code", csite."Customer No.");
                     cos.SetRange("Site Loc Code", csite."Site Code");

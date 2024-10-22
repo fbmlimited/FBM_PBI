@@ -5,11 +5,11 @@ page 61123 FBM_OtemJnlPost
     APIGroup = 'app1';
     APIPublisher = 'FBMGroup';
     EntitySetName = 'ItemJnlPost';
-    EntityName = 'OtemJnlPost';
+    EntityName = 'ItemJnlPost';
     APIVersion = 'v2.0', 'v1.0';
-    UsageCategory = Lists;
+    //UsageCategory = Lists;
     SourceTable = "Item Journal Line";
-    SourceTableTemporary = true;
+
     DelayedInsert = true;
     Description = '16.0';
     layout
@@ -18,6 +18,11 @@ page 61123 FBM_OtemJnlPost
         {
             repeater(ItemJnl)
             {
+                field(DocumentNo; Rec."Document No.")
+                {
+                    Caption = 'Document No.';
+
+                }
                 field(LineNo; Rec."Line No.")
                 {
                     Caption = 'Item No.';
@@ -60,12 +65,12 @@ page 61123 FBM_OtemJnlPost
                     end;
 
                 }
-                field(FBM_Site; Rec.FBM_Site)
+                field(Site; Rec.FBM_Site)
                 {
                     Caption = 'site';
 
                 }
-                field(BinCode; Rec."Bin Code")
+                field(Bin; Rec."Bin Code")
                 {
                     Caption = 'Bin';
 
@@ -87,6 +92,7 @@ page 61123 FBM_OtemJnlPost
             rec."Entry Type" := rec."Entry Type"::"Positive Adjmt.";
         rec."Journal Template Name" := invsetup.FBM_InvAdjTemplate;
         rec."Journal Batch Name" := invsetup.FBM_InvAdjBatch;
+        rec."Posting Date" := Today;
     end;
 
     var

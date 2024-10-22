@@ -82,6 +82,21 @@ page 61110 FBM_Site_PBI
                 {
                     ApplicationArea = all;
                 }
+                field(Company1; Rec.Company1)
+                {
+                    Caption = 'Company 1';
+                    ApplicationArea = all;
+                }
+                field(Company2; Rec.Company2)
+                {
+                    Caption = 'Company 2';
+                    ApplicationArea = all;
+                }
+                field(Company3; Rec.Company3)
+                {
+                    Caption = 'Company 3';
+                    ApplicationArea = all;
+                }
             }
         }
     }

@@ -94,6 +94,21 @@ page 61103 FBM_CustomerOp_PBI
                     Caption = 'Last Modified At';
                     ApplicationArea = all;
                 }
+                field(Company1; Rec.FBM_Company1)
+                {
+                    Caption = 'Company 1';
+                    ApplicationArea = all;
+                }
+                field(Company2; Rec.FBM_Company2)
+                {
+                    Caption = 'Company 2';
+                    ApplicationArea = all;
+                }
+                field(Company3; Rec.FBM_Company3)
+                {
+                    Caption = 'Company 3';
+                    ApplicationArea = all;
+                }
 
 
             }

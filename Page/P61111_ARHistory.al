@@ -1,12 +1,12 @@
 page 61111 FBM_ARHistory_PBI
 {
-    PageType = list;
+    PageType = API;
     Caption = 'AR History';
-    // APIPublisher = 'FBMGroup';
-    // APIGroup = 'app1';
-    // APIVersion = 'v2.0', 'v1.0';
-    // EntityName = 'ARHistory';
-    // EntitySetName = 'ARHistory';
+    APIPublisher = 'FBMGroup';
+    APIGroup = 'app1';
+    APIVersion = 'v2.0', 'v1.0';
+    EntityName = 'ARHistory';
+    EntitySetName = 'ARHistory';
     SourceTable = FBM_CustLE;
     DelayedInsert = true;
     InsertAllowed = false;
@@ -34,12 +34,12 @@ page 61111 FBM_ARHistory_PBI
                     ApplicationArea = all;
 
                 }
-                field("Customer No."; Rec."Customer No.")
+                field(CustomerNo; Rec."Customer No.")
                 {
                     ApplicationArea = all;
 
                 }
-                field("Customer Name"; Rec."Customer Name")
+                field(CustomerName; Rec."Customer Name")
                 {
                     ApplicationArea = all;
 

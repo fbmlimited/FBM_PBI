@@ -7,7 +7,7 @@ page 61120 FBM_CustList_PBI
     Caption = 'Customerws';
     CardPageID = "Customer Card";
     Editable = false;
-    PageType = List;
+    //PageType = List;
     QueryCategory = 'Customer List';
     SourceTable = Customer;
     UsageCategory = Lists;

@@ -7,7 +7,7 @@ page 61128 FBM_SiteMastMX_PBI
     EntitySetName = 'SiteMastMX';
     EntityName = 'SiteMastMX';
     APIVersion = 'v2.0', 'v1.0', 'v2.1';
-    UsageCategory = Lists;
+    //UsageCategory = Lists;
     SourceTable = FBM_Site;
     DelayedInsert = true;
     MultipleNewLines = true;

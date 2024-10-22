@@ -7,7 +7,7 @@ page 61119 FBM_LocList_PBI
     EntitySetName = 'LocListWS';
     EntityName = 'LocListWS';
     APIVersion = 'v2.0', 'v1.0';
-    UsageCategory = Lists;
+    //UsageCategory = Lists;
     SourceTable = Location;
     DelayedInsert = true;
 

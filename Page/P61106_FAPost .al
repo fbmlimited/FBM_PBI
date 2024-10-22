@@ -137,6 +137,7 @@ page 61106 FBM_FAPost_PBI
                         end;
                         fa.FBM_Lessee := rec.F07;
                         csite.setrange("Site Code", rec.F06);
+                        csite.SetRange(ActiveRec, true);
                         if csite.FindFirst() then
                             fa.FBM_Site := csite.SiteGrCode;
                         fa."FA Location Code" := rec.F10;
