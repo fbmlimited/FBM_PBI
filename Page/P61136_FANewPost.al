@@ -11,6 +11,7 @@ page 61136 FBM_FANewPost_PBI
     SourceTable = "Fixed Asset";
     DelayedInsert = true;
     MultipleNewLines = true;
+    AutoSplitKey = false;
 
     layout
     {
@@ -45,7 +46,7 @@ page 61136 FBM_FANewPost_PBI
                     Caption = 'Subclass code';
 
                 }
-                field(ReplicaStatus; Rec.FBM_ReplicaStatus)
+                field(ReplicaStatus; Rec.FBM_ReplicaStatus2)
                 {
                     Caption = 'ReplicaStatus';
 
@@ -57,18 +58,13 @@ page 61136 FBM_FANewPost_PBI
         }
     }
     trigger
-   OnInsertRecord(BelowxRec: Boolean): Boolean
+    OnInsertRecord(BelowxRec: Boolean): Boolean
     begin
-        rec.FBM_ReplicaStatus := rec.FBM_ReplicaStatus::Sent;
-
+        REC.FBM_ReplicaStatus2 := REC.FBM_ReplicaStatus2::Sent;
     end;
 
-    trigger
-    OnOpenPage()
-    begin
-        rec.SetRange(FBM_ReplicaStatus, rec.FBM_ReplicaStatus::Pending);
-        rec.SetRange("FA Subclass Code",'EGM_MX');
-    end;
+
+
 
 }
 

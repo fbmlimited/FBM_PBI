@@ -109,6 +109,7 @@ page 61133 FBM_GetFAMX_PBI
     OnOpenPage()
     begin
         rec.SetRange("FA Subclass Code", 'EGM_MX');
+        rec.SetFilter(FBM_ReplicaStatus2, '<>%1', rec.FBM_ReplicaStatus2::Sent);
     end;
 
     trigger

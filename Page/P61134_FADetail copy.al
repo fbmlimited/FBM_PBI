@@ -174,55 +174,58 @@ page 61134 FBM_FADetailCopy_PBI
     begin
 #if MAIN
         if company.FindFirst() then
-#ENDIF
-        repeat
-#IF MAIN
+            repeat
+
                 compinfo.ChangeCompany(company.Name);
-#ENDIF
-            compinfo.get;
-#IF MAIN
-            fa.ChangeCompany(company.Name);
-            fasc.ChangeCompany(company.Name);
-#ENDIF
-            fa.SetRange(FBM_IsEGM, true);
-
-            if fa.FindFirst() then
-                repeat
-                    if fasc.get(fa."FA Subclass Code") then
-                        if fasc.FBM_EGM then begin
-                            rec.Init();
-                            rec."No." := compinfo."Custom System Indicator Text" + fa."No.";
-                            rec."Serial No." := fa."Serial No.";
-                            rec.FBM_EGM_Property := compinfo."Custom System Indicator Text";
-                            rec.Description := fa.Description;
-                            rec.FBM_Site := fa.FBM_Site + REC."FA Location Code";
-                            rec."Description 2" := fa."No.";
-                            rec.FBM_Brand := fa.FBM_Brand;
-                            rec.FBM_Model := fa.FBM_Model;
-                            rec.FBM_Segment2 := fa.FBM_Segment2;
-                            rec.FBM_Lessee := fa.FBM_Lessee;
-                            rec.FBM_Status := fa.FBM_Status;
-                            rec.Description := fa.Description;
-                            rec."FA Class Code" := fa."FA Class Code";
-                            rec."FA Subclass Code" := fa."FA Subclass Code";
-                            rec.FBM_IsEGM := fa.FBM_IsEGM;
+                fa.ChangeCompany(company.Name);
+                fasc.ChangeCompany(company.Name);
+#endif
+                compinfo.get;
 
 
 
+                fa.SetRange(FBM_IsEGM, true);
+                fa.SetFilter(FBM_ReplicaStatus2, '<>%1', fa.FBM_ReplicaStatus2::Sent);
+
+                if fa.FindFirst() then
+                    repeat
+                        if fasc.get(fa."FA Subclass Code") then
+                            if fasc.FBM_EGM then begin
+                                rec.Init();
+                                rec."No." := compinfo."Custom System Indicator Text" + fa."No.";
+                                rec."Serial No." := fa."Serial No.";
+                                rec.FBM_EGM_Property := compinfo."Custom System Indicator Text";
+                                rec.Description := fa.Description;
+                                rec.FBM_Site := fa.FBM_Site + REC."FA Location Code";
+                                rec."Description 2" := fa."No.";
+                                rec.FBM_Brand := fa.FBM_Brand;
+                                rec.FBM_Model := fa.FBM_Model;
+                                rec.FBM_Segment2 := fa.FBM_Segment2;
+                                rec.FBM_Lessee := fa.FBM_Lessee;
+                                rec.FBM_Status := fa.FBM_Status;
+                                rec.Description := fa.Description;
+                                rec."FA Class Code" := fa."FA Class Code";
+                                rec."FA Subclass Code" := fa."FA Subclass Code";
+                                rec.FBM_IsEGM := fa.FBM_IsEGM;
 
 
-                            rec.FBM_Subsidiary := fa.FBM_Subsidiary;
 
 
-                            rec.IsActive := fa.IsActive;
-                            rec.FBM_Sma := fa.SystemModifiedAt;
-                            rec.FBM_Sca := fa.SystemCreatedAt;
-                            //if fa.IsActive then
-                            rec.Insert();
 
-                        end;
-                until fa.Next() = 0;
-        until company.Next() = 0;
+                                rec.FBM_Subsidiary := fa.FBM_Subsidiary;
+
+
+                                rec.IsActive := fa.IsActive;
+                                rec.FBM_Sma := fa.SystemModifiedAt;
+                                rec.FBM_Sca := fa.SystemCreatedAt;
+                                //if fa.IsActive then
+                                rec.Insert();
+
+                            end;
+                    until fa.Next() = 0;
+#if MAIN
+            until company.Next() = 0;
+#endif
 
     end;
 
@@ -233,6 +236,8 @@ page 61134 FBM_FADetailCopy_PBI
         csite: record FBM_CustomerSite_C;
         compinfo: record "Company Information";
         fa: record "Fixed Asset";
+        util: codeunit FBM_Utility_DD;
+        loc: record "FA Location";
     begin
         company.FindFirst();
         repeat
@@ -249,18 +254,20 @@ page 61134 FBM_FADetailCopy_PBI
             netbook := 0;
             locname := '';
             siteloc := '';
+            compinfo.ChangeCompany(util.getcompanyname(rec.FBM_Lessee));
             compinfo.get();
+            csite.ChangeCompany(util.getcompanyname(rec.FBM_Lessee));
             if csite.FindFirst() then begin
                 site.SetRange("Site Code", rec.FBM_Site);
                 site.SetRange(ActiveRec, true);
                 csite.Reset();
 #if MAIN
-                if (rec.FBM_Site <> '') and (compinfo."Custom System Indicator Text" = rec.FBM_Lessee) then begin
+                //if (rec.FBM_Site <> '') and (compinfo."Custom System Indicator Text" = rec.FBM_Lessee) then begin
 #endif
                 csite.SetRange(SiteGrCode, rec.FBM_Site);
                 csite.SetRange(ActiveRec, true);
                 if csite.FindFirst() then begin
-
+                    loc.ChangeCompany(util.getcompanyname(copystr(rec."No.", 1, 3)));
                     if loc.get(rec."FA Location Code") then
                         locname := loc.Name;
 
@@ -281,10 +288,13 @@ page 61134 FBM_FADetailCopy_PBI
                 end;
 
 #if not JYM
+                fale.ChangeCompany(util.getcompanyname(copystr(rec."No.", 1, 3)));
+                fa.ChangeCompany(util.getcompanyname(copystr(rec."No.", 1, 3)));
                 fa.get(rec."description 2");
                 fale.Reset();
                 fale.SetRange("FA No.", rec."Description 2");
                 fale.SetRange("FA Posting Type", fale."FA Posting Type"::"Acquisition Cost");
+                fale.SetFilter("FA Posting Category", '<>%1', fale."FA Posting Category"::Disposal);
                 if fale.findfirst then begin
                     acqdate := fale."Posting Date";
                     fa.FBM_AcquisitionDate := fale."Posting Date";
@@ -293,10 +303,12 @@ page 61134 FBM_FADetailCopy_PBI
 
 
                 fale.SetRange("FA Posting Type", fale."FA Posting Type"::Depreciation);
-                if fale.findfirst then
+                if fale.findfirst then begin
                     datedepr := fale."Posting Date";
-                fa.FBM_DepreciationDate := fale."Posting Date";
+                    fa.FBM_DepreciationDate := fale."Posting Date";
+                end;
                 fale.Reset();
+
 
                 fale.SetRange("FA No.", rec."Description 2");
                 fale.CalcSums(Amount);
@@ -304,6 +316,7 @@ page 61134 FBM_FADetailCopy_PBI
                 fale.Reset();
                 fale.SetRange("FA No.", rec."Description 2");
                 fale.SetRange("FA Posting Type", fale."FA Posting Type"::"Acquisition Cost");
+                fale.SetFilter("FA Posting Category", '<>%1', fale."FA Posting Category"::Disposal);
                 fale.CalcSums(Amount);
                 acqcost := fale.Amount;
                 fa.FBM_AcquisitionCost := fale.amount;
@@ -322,7 +335,7 @@ page 61134 FBM_FADetailCopy_PBI
 
 
 #if MAIN
-                end;
+                //end;
 #endif
             end;
         until company.Next() = 0;
